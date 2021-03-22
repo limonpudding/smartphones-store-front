@@ -14,8 +14,8 @@ const Catalog = (props) => {
     }, []);
 
     return (
-        <div>
-            <Row xs={"3"}>
+        <div className={'content'}>
+            <Row xs={"2"}>
                 {
                     props.books && props.books.map(book => {
                         return (
