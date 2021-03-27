@@ -31,6 +31,113 @@
 .content {
   padding: 16px;
 }
+/* Форма вход/регистрация */
+.auth-form {
+  width: 250px;
+  margin: 20px auto;
+  border-radius: 6px;
+}
+/* Форма вход/регистрация  END*/
+
+/* Шапка сайта */
+.ts-header {
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 14px;
+  border-radius: 0 0 6px 6px;
+}
+
+.ts-header .navbar-brand {
+  font-size: 18px;
+  color: #ffc430 !important;
+}
+
+.ts-header .navbar-brand:hover {
+  color: #ffcd58 !important;
+}
+
+.ts-header .nav-link {
+  font-size: 16px;
+  color: #ffffff !important;
+}
+
+.ts-header .nav-link:hover {
+  color: #ffcd58 !important;
+}
+
+.ts-header button {
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 14px;
+  display: inline-block;
+  color: #ffffff !important;
+  border: 2px solid #ffc430 !important;
+}
+
+.ts-header button:hover {
+  background: #ffcd58;
+  color: #151515;
+}
+/* Шапка сайта END */
+
+/* Форма ввода с темным фоном */
+.ts-form-group-dark {
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.ts-form-group-dark input[type="login"] {
+}
+
+.ts-form-group-dark button {
+  background: #ffc430;
+  border: 0;
+  padding: 6px 16px;
+  color: #151515;
+  transition: 0.4s;
+  border-radius: 4px;
+}
+
+.ts-form-group-dark button:hover {
+  background: #ffcd58;
+  color: #151515;
+}
+/* Форма ввода с темным фоном END */
+
+/* Карточка с информацией */
+.content-card {
+  background: #ffffff;
+  border-radius: 6px;
+
+}
+/* Карточка с информацией END */
+
+/* Боковое меню */
+.right-menu {
+  padding: 16px 16px 16px 0;
+
+}
+/* Боковое меню END */
+
+/* Боковое меню */
+.right-card {
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.right-card .nav-link {
+  font-size: 16px;
+  color: #000000 !important;
+}
+
+.right-card .nav-link:hover {
+  color: #ffc430 !important;
+}
+/* Боковое меню END */
 
 @keyframes App-logo-spin {
   from {

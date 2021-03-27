@@ -4,6 +4,8 @@ import {createLogger} from "redux-logger";
 import reducers from "./reducers/reducers"
 
 import booksMiddleware from "./middleware/books"
+import smartphonesMiddleware from "./middleware/smartphones";
+import brandsMiddleware from "./middleware/brands";
 
 /**
  * To initialize the store
@@ -16,7 +18,9 @@ export default function configureStore() {
     // create middleware
     const middleware = applyMiddleware(...[
         thunk,
-        booksMiddleware()
+        booksMiddleware(),
+        smartphonesMiddleware(),
+        brandsMiddleware()
     ]);
 
     // create a new store and return it

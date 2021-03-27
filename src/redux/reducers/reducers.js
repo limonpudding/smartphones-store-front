@@ -3,6 +3,7 @@ import {combineReducers} from 'redux';
 // import partial reducers
 import books from "./books";
 import smartphones from "./smartphones";
+import brands from "./brands";
 
 /**
  * Combine and return all reducers to store
@@ -10,6 +11,7 @@ import smartphones from "./smartphones";
 export default combineReducers({
     // list of reducers
     books,
-    smartphones
+    smartphones,
+    brands
 
 });

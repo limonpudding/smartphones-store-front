@@ -12,7 +12,7 @@ import {selectBooks} from "../../redux/selectors/books";
 import {GetBooks} from "../../redux/actions/books";
 import {connect} from "react-redux";
 
-const AuthorsBar = (props) => {
+const TopMenu = (props) => {
 
     const getAuthorsData = () => {
         let data = props.books.map(book => book.authors).flat();
@@ -39,20 +39,27 @@ const AuthorsBar = (props) => {
 
     return (
         <div>
-            <Navbar color="light" light expand="md">
-                <NavbarBrand href="#">Authors</NavbarBrand>
+            <Navbar className={'navbar navbar-dark ts-header'} light expand="md">
+                <NavbarBrand href="#">Магазин TechSTORE</NavbarBrand>
                 <NavbarToggler onClick={toggle}/>
+
                 <Collapse isOpen={isOpen} navbar>
-                    <Nav className="mr-auto" navbar>
-                        {
-                            authors.map(author => {
-                                return (
-                                    <NavItem>
-                                        <NavLink href={`/author/${author.id}`}>{author.name}</NavLink>
-                                    </NavItem>
-                                )
-                            })
-                        }
+                    <Nav className="ml-auto" navbar>
+                        <NavItem>
+                            <NavLink href="/login">Вход</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href="/register">Регистрация</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href="/catalog">Каталог</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href="/basket">Корзина</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href="/orders">Заказы</NavLink>
+                        </NavItem>
                     </Nav>
                 </Collapse>
             </Navbar>
@@ -70,4 +77,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthorsBar);
+export default connect(mapStateToProps, mapDispatchToProps)(TopMenu);

@@ -1,11 +1,11 @@
-import {GetBooksAction, SetBooksAction} from "../actions/books";
+import {SetBrandsAction} from "../actions/brands";
 
 /**
  * initial state of the book list
- * @type {{books: []}}
+ * @type {{brands: []}}
  */
 const initialState = {
-    books: []
+    brands: []
 }
 
 /**
@@ -15,9 +15,9 @@ const initialState = {
  */
 export default function (state = initialState, action) {
     switch (action.type) {
-        case SetBooksAction: return {
+        case SetBrandsAction: return {
             ...state,
-            books: action.payload
+            brands: action.payload
         }
         default:
             return state;

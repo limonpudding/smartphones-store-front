@@ -3,7 +3,7 @@ import {Alert, Col} from "reactstrap";
 
 const SmartphoneCard = (props) => {
     return (
-        <Col>
+        <Col className={'content-card'}>
             <h3>{props.smartphone.modelName}</h3>
 
             <p>
@@ -12,7 +12,7 @@ const SmartphoneCard = (props) => {
                 }
             </p>
 
-            <Alert color={"success"}>{props.smartphone.price}</Alert>
+            <Alert color={"success"}>Цена: {props.smartphone.price}</Alert>
         </Col>
     );
 }
