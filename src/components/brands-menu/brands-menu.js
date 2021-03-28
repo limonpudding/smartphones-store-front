@@ -2,11 +2,13 @@ import React, {useEffect} from 'react';
 import {
     Nav,
     NavItem,
-    NavLink, Row
+    Row
 } from "reactstrap";
+import {NavLink as kek} from "reactstrap";
 import {connect} from "react-redux";
 import {selectBrands} from "../../redux/selectors/brands";
 import {GetBrands} from "../../redux/actions/brands";
+import {NavLink} from "react-router-dom";
 
 const BrandsMenu = (props) => {
 
@@ -22,7 +24,7 @@ const BrandsMenu = (props) => {
                     props.brands && props.brands.map(brand => {
                         return (
                             <NavItem>
-                                <NavLink href={`/brand/${brand.id}`}>{brand.name}</NavLink>
+                                <kek> <NavLink to={`/catalog/${brand.id}`}>{brand.name}</NavLink></kek>
                             </NavItem>
                         )
                     })

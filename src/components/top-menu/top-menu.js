@@ -5,12 +5,14 @@ import {
     Navbar,
     NavbarBrand,
     NavbarToggler,
-    NavItem,
-    NavLink
+    NavItem
 } from "reactstrap";
 import {selectBooks} from "../../redux/selectors/books";
 import {GetBooks} from "../../redux/actions/books";
 import {connect} from "react-redux";
+import {NavLink} from "react-router-dom";
+import {NavLink as kek} from "reactstrap";
+
 
 const TopMenu = (props) => {
 
@@ -46,19 +48,19 @@ const TopMenu = (props) => {
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <NavLink href="/login">Вход</NavLink>
+                            <NavLink to="/login">Вход</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/register">Регистрация</NavLink>
+                            <NavLink to="/register">Регистрация</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/catalog">Каталог</NavLink>
+                            <NavLink to="/catalog">Каталог</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/basket">Корзина</NavLink>
+                            <NavLink to="/basket">Корзина</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/orders">Заказы</NavLink>
+                            <NavLink to="/orders">Заказы</NavLink>
                         </NavItem>
                     </Nav>
                 </Collapse>

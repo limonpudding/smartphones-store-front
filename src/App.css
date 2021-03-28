@@ -56,12 +56,16 @@
   color: #ffcd58 !important;
 }
 
-.ts-header .nav-link {
+.ts-header .nav-item {
+  padding: 0 5px 0 5px;
+}
+
+.ts-header a {
   font-size: 16px;
   color: #ffffff !important;
 }
 
-.ts-header .nav-link:hover {
+.ts-header a:hover {
   color: #ffcd58 !important;
 }
 
@@ -89,9 +93,6 @@
   margin-top: 20px;
 }
 
-.ts-form-group-dark input[type="login"] {
-}
-
 .ts-form-group-dark button {
   background: #ffc430;
   border: 0;
@@ -111,7 +112,19 @@
 .content-card {
   background: #ffffff;
   border-radius: 6px;
+}
 
+.add-to-basket {
+  cursor: pointer;
+  background-color: #ffc430;
+}
+
+.add-to-basket:hover {
+  background-color: #ffcd58;
+}
+
+.add-to-basket:active {
+  background-color: #ffc430;
 }
 /* Карточка с информацией END */
 
@@ -129,15 +142,55 @@
   padding: 16px;
 }
 
-.right-card .nav-link {
+.right-card a {
   font-size: 16px;
   color: #000000 !important;
 }
 
-.right-card .nav-link:hover {
+.right-card a:hover {
   color: #ffc430 !important;
 }
 /* Боковое меню END */
+
+/* Карточка для корзины */
+.basket-card {
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 20px;
+}
+
+.delete-icon {
+  color: #9f0000;
+  cursor: pointer;
+
+}
+
+.delete-icon:hover {
+  color: #e20000;
+}
+/* Карточка для корзины END */
+
+/* Действия в карточке */
+.action-buttons {
+  padding: 10px;
+  text-align: right;
+}
+
+.action-buttons button {
+  background: #ffc430;
+  border: 0;
+  padding: 6px 16px;
+  color: #151515;
+  transition: 0.4s;
+  border-radius: 4px;
+}
+
+.action-buttons button:hover {
+  background: #ffcd58;
+  color: #151515;
+}
+/* Действия в карточке END */
+
 
 @keyframes App-logo-spin {
   from {

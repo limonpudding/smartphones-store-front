@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {connect} from "react-redux";
-import {Row, Col, Alert, Container} from "reactstrap";
+import {Row, Col} from "reactstrap";
 
 import {selectSmartphones} from "../../redux/selectors/smartphones";
 
 import SmartphoneCard from "../smartphone-card/smartphone-card";
 import {GetSmartphones} from "../../redux/actions/smartphones";
 import BrandsMenu from "../brands-menu/brands-menu";
+import {useParams} from "react-router";
 
 const SmartphonesCatalog = (props) => {
 
@@ -14,13 +15,15 @@ const SmartphonesCatalog = (props) => {
         props.getSmartphones();
     }, []);
 
+    let {brandId} = useParams();
+
     return (
         <Row>
             <Col xs="12" sm="9">
                 <div className={'content'}>
-                    <Row xs={"1"}>
+                    <Row xs={"2"}>
                         {
-                            props.smartphones && props.smartphones.map(smartphone => {
+                            props.smartphones && props.smartphones.filter(smartphone => !brandId || smartphone.brand.id === parseInt(brandId)).map(smartphone => {
                                 return (
                                     <SmartphoneCard key={`smartphone-${smartphone.id}`} smartphone={smartphone}/>
                                 )
