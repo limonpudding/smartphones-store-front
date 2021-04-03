@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
     Collapse,
     Nav,
@@ -7,34 +7,10 @@ import {
     NavbarToggler,
     NavItem
 } from "reactstrap";
-import {selectBooks} from "../../redux/selectors/books";
-import {GetBooks} from "../../redux/actions/books";
-import {connect} from "react-redux";
 import {NavLink} from "react-router-dom";
-import {NavLink as kek} from "reactstrap";
 
 
 const TopMenu = (props) => {
-
-    const getAuthorsData = () => {
-        let data = props.books.map(book => book.authors).flat();
-        let uniqueAuthors = [];
-        data.filter(function (author) {
-            var i = uniqueAuthors.findIndex(item => item.id === author.id);
-            if (i <= -1) {
-                uniqueAuthors.push(author);
-            }
-            return null;
-        });
-        setAuthors(uniqueAuthors);
-    }
-
-    const [authors, setAuthors] = useState([]);
-
-    useEffect(() => {
-        props.getBooks();
-        getAuthorsData();
-    }, []);
 
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
@@ -69,14 +45,4 @@ const TopMenu = (props) => {
     )
 }
 
-const mapStateToProps = state => ({
-    books: selectBooks(state)
-})
-
-const mapDispatchToProps = dispatch => {
-    return {
-        getBooks: () => dispatch(new GetBooks())
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TopMenu);
+export default TopMenu;

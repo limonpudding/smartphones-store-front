@@ -1,13 +1,10 @@
-import {GetBooksAction, SetBooks} from "../actions/books";
+import {GetOrdersAction, SetOrders} from "../actions/orders";
 
-/**
- * Middleware function
- */
-export default function booksMiddleware() {
+export default function ordersMiddleware() {
     return store => next => action => {
         switch (action.type) {
-            case GetBooksAction:
-                fetch("http://localhost:8080/books", {
+            case GetOrdersAction:
+                fetch("http://localhost:8080/purchaseOrders", {
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
@@ -15,7 +12,7 @@ export default function booksMiddleware() {
                 }).then(
                     response => response.json()
                 ).then(
-                    response => store.dispatch(new SetBooks(response))
+                    response => store.dispatch(new SetOrders(response))
                 )
                 break;
         }

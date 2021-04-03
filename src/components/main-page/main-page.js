@@ -5,7 +5,7 @@ import Login from "../login/login";
 import {BrowserRouter as Router} from "react-router-dom";
 import AuthorsBar from "../top-menu/top-menu";
 import SmartphonesCatalog from "../smartphones-catalog/smartphones-catalog";
-import Basket from "../solo-basket/basket";
+import Basket from "../basket/basket";
 import Orders from "../orders/orders";
 import Register from "../register/register";
 

@@ -1,14 +1,14 @@
-import {SetBrandsAction} from "../actions/brands";
+import {SetOrdersAction} from "../actions/orders";
 
 const initialState = {
-    brands: []
+    orders: []
 }
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case SetBrandsAction: return {
+        case SetOrdersAction: return {
             ...state,
-            brands: action.payload
+            orders: action.payload
         }
         default:
             return state;

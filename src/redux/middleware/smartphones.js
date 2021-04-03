@@ -1,8 +1,5 @@
 import {GetSmartphonesAction, SetSmartphones} from "../actions/smartphones";
 
-/**
- * Middleware function
- */
 export default function smartphonesMiddleware() {
     return store => next => action => {
         switch (action.type) {

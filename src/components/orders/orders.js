@@ -1,56 +1,41 @@
-import React, {useEffect} from "react";
-import {Button, Col, Row, Table} from "reactstrap";
+import React from "react";
+import {Col, Row, Table} from "reactstrap";
 import {connect} from "react-redux";
-import {SetBasket} from "../../redux/actions/basket";
-import SmartphoneCard from "../smartphone-card/smartphone-card";
-import basket from "../../redux/reducers/basket";
+import {SetOrders} from "../../redux/actions/orders";
 
 const Orders = (props) => {
 
-    useEffect(() => {
-        console.log(props.basket)
-    }, []);
-
-    const removeFromBasket = (id) => {
-        let actualBasket = props.basket.filter(smartphone => smartphone.id !== id);
-        props.setBasket(actualBasket);
-    }
 
     return (
         <Row>
             <Col xs="12" sm="12">
                 <div className={'content'}>
                     <div className={'basket-card'}>
-                        <h2>Товары в вашей корзине:</h2>
+                        <h2>Ваши заказы:</h2>
                         <Table>
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Модель</th>
-                                <th>Брэнд</th>
-                                <th>Цена</th>
-                                <th>Убрать</th>
+                                <th>Номер заказа</th>
+                                <th>Сумма заказа</th>
+                                <th>Статус</th>
                             </tr>
                             </thead>
                             <tbody>
                             {
-                                props.basket && props.basket.map(smartphone => {
+                                props.orders && props.orders.map(order => {
                                     return (
-                                        <tr key={`smartphone-${smartphone.id}`}>
+                                        <tr key={`order-${order.id}`}>
                                             <th scope="row">1</th>
-                                            <td>{smartphone.modelName}</td>
-                                            <td>{smartphone.brand.name}</td>
-                                            <td>{smartphone.price}</td>
-                                            <td onClick={() => removeFromBasket(smartphone.id)}><strong className={'delete-icon'}>X</strong></td>
+                                            <td>{order.number}</td>
+                                            <td>{order.fullPrice}</td>
+                                            <td>{order.price}</td>
                                         </tr>
                                     )
                                 })
                             }
                             </tbody>
                         </Table>
-                        <div className={"action-buttons"}>
-                            <Button>Оформить заказ</Button>
-                        </div>
                     </div>
                 </div>
             </Col>
@@ -59,12 +44,12 @@ const Orders = (props) => {
 }
 
 const mapStateToProps = state => ({
-    basket: state.basket.basket
+    orders: state.orders.orders
 })
 
 const mapDispatchToProps = dispatch => {
     return {
-        setBasket: (basket) => dispatch(new SetBasket(basket))
+        setBasket: (basket) => dispatch(new SetOrders(basket))
     }
 }
 

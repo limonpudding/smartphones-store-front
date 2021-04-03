@@ -1,8 +1,5 @@
 import {GetBrandsAction, SetBrands} from "../actions/brands";
 
-/**
- * Middleware function
- */
 export default function brandsMiddleware() {
     return store => next => action => {
         switch (action.type) {
