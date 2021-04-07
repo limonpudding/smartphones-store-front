@@ -5,6 +5,7 @@ const Login = () => {
     return (
         <div className={'content text-center auth-form ts-form-group-dark'}>
             <Form>
+                <h5>ЛОГИН</h5>
                 <FormGroup>
                     <Input type="login" name="login" id="login" placeholder="Логин"/>
                 </FormGroup>

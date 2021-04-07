@@ -16,13 +16,14 @@ const TopMenu = (props) => {
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <div>
-            <Navbar className={'navbar navbar-dark ts-header'} light expand="md">
+        <div className={"ts-header"}>
+            <Navbar className={'navbar navbar-dark container'} light expand="md">
                 <NavbarBrand href="#">Магазин TechSTORE</NavbarBrand>
                 <NavbarToggler onClick={toggle}/>
 
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
+                        {/*Для простого пользователя*/}
                         <NavItem>
                             <NavLink to="/login">Вход</NavLink>
                         </NavItem>
@@ -38,6 +39,17 @@ const TopMenu = (props) => {
                         <NavItem>
                             <NavLink to="/orders">Заказы</NavLink>
                         </NavItem>
+
+                        {/*Для админки*/}
+                        {/*<NavItem>*/}
+                        {/*    <NavLink to="/manage-users">Управление пользователями</NavLink>*/}
+                        {/*</NavItem>*/}
+                        <NavItem>
+                            <NavLink to="/manage-catalog">Управление каталогом</NavLink>
+                        </NavItem>
+                        {/*<NavItem>*/}
+                        {/*    <NavLink to="/manage-orders">Управление заказами</NavLink>*/}
+                        {/*</NavItem>*/}
                     </Nav>
                 </Collapse>
             </Navbar>

@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {Button, Col, Row, Table} from "reactstrap";
 import {connect} from "react-redux";
-import {SetBasket} from "../../redux/actions/basket";
+import {SetBasket} from "../../../redux/actions/basket";
 
 const Basket = (props) => {
 

@@ -2,10 +2,10 @@ import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {Row, Col} from "reactstrap";
 
-import {selectSmartphones} from "../../redux/selectors/smartphones";
+import {selectSmartphones} from "../../../redux/selectors/smartphones";
 
 import SmartphoneCard from "../smartphone-card/smartphone-card";
-import {GetSmartphones} from "../../redux/actions/smartphones";
+import {GetSmartphones} from "../../../redux/actions/smartphones";
 import BrandsMenu from "../brands-menu/brands-menu";
 import {useParams} from "react-router";
 

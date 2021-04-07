@@ -2,12 +2,12 @@ import React, {useEffect} from 'react';
 import {
     Nav,
     NavItem,
-    Row
+    Col
 } from "reactstrap";
 import {NavLink as kek} from "reactstrap";
 import {connect} from "react-redux";
-import {selectBrands} from "../../redux/selectors/brands";
-import {GetBrands} from "../../redux/actions/brands";
+import {selectBrands} from "../../../redux/selectors/brands";
+import {GetBrands} from "../../../redux/actions/brands";
 import {NavLink} from "react-router-dom";
 
 const BrandsMenu = (props) => {
@@ -17,7 +17,8 @@ const BrandsMenu = (props) => {
     }, []);
 
     return (
-        <div className={'right-card'}>
+        <Col>
+            <div  className={'right-card'}>
             <p>Бренд</p>
             <Nav vertical>
                 {
@@ -30,7 +31,8 @@ const BrandsMenu = (props) => {
                     })
                 }
             </Nav>
-        </div>
+            </div>
+        </Col>
     );
 }
 
