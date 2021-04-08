@@ -4,7 +4,7 @@ export default function brandsMiddleware() {
     return store => next => action => {
         switch (action.type) {
             case GetBrandsAction:
-                fetch("http://localhost:8080/brands", {
+                fetch("/brands", {
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
@@ -16,7 +16,7 @@ export default function brandsMiddleware() {
                 )
                 break;
             case AddBrandAction:
-                fetch("http://localhost:8080/brands", {
+                fetch("/brands", {
                     method: 'post',
                     headers: {
                         'Content-Type': 'application/json',

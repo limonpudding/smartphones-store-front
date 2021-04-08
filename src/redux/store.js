@@ -6,6 +6,7 @@ import reducers from "./reducers/reducers"
 import smartphonesMiddleware from "./middleware/smartphones";
 import brandsMiddleware from "./middleware/brands";
 import ordersMiddleware from "./middleware/orders";
+import authMiddleware from "./middleware/auth";
 
 /**
  * To initialize the store
@@ -20,7 +21,8 @@ export default function configureStore() {
         thunk,
         smartphonesMiddleware(),
         brandsMiddleware(),
-        ordersMiddleware()
+        ordersMiddleware(),
+        authMiddleware()
     ]);
 
     // create a new store and return it

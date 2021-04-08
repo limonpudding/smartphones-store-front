@@ -4,7 +4,7 @@ export default function smartphonesMiddleware() {
     return store => next => action => {
         switch (action.type) {
             case GetSmartphonesAction:
-                fetch("http://localhost:8080/smartphones", {
+                fetch("/smartphones", {
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
@@ -16,7 +16,7 @@ export default function smartphonesMiddleware() {
                 )
                 break;
             case AddSmartphoneAction:
-                fetch("http://localhost:8080/smartphones", {
+                fetch("/smartphones", {
                     method: 'post',
                     headers: {
                         'Content-Type': 'application/json',
