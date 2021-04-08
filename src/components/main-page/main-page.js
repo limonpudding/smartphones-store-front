@@ -9,6 +9,7 @@ import Basket from "../default/basket/basket";
 import Orders from "../default/orders/orders";
 import Register from "../register/register";
 import ManageCatalog from "../admin/manage-catalog/manage-catalog";
+import ManageBrands from "../admin/manage-brands/manage-brands";
 
 const MainPage = () => {
 
@@ -38,6 +39,9 @@ const MainPage = () => {
                     </Route>
                     <Route path="/manage-catalog">
                         <ManageCatalog/>
+                    </Route>
+                    <Route path="/manage-brands">
+                        <ManageBrands/>
                     </Route>
                 </Switch>
                 </div>

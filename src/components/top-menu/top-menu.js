@@ -47,6 +47,9 @@ const TopMenu = (props) => {
                         <NavItem>
                             <NavLink to="/manage-catalog">Управление каталогом</NavLink>
                         </NavItem>
+                        <NavItem>
+                            <NavLink to="/manage-brands">Управление брендами</NavLink>
+                        </NavItem>
                         {/*<NavItem>*/}
                         {/*    <NavLink to="/manage-orders">Управление заказами</NavLink>*/}
                         {/*</NavItem>*/}

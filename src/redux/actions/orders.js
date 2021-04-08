@@ -2,6 +2,7 @@ import BaseAction from "../helpers/BaseAction";
 
 export const GetOrdersAction = "GetOrdersAction";
 export const SetOrdersAction = "SetOrdersAction";
+export const AddOrderAction = "AddOrderAction";
 
 export class GetOrders extends BaseAction {
     constructor(payload = {}) {
@@ -12,5 +13,11 @@ export class GetOrders extends BaseAction {
 export class SetOrders extends BaseAction {
     constructor(payload) {
         super(SetOrdersAction, payload);
+    }
+}
+
+export class AddOrder extends BaseAction {
+    constructor(payload) {
+        super(AddOrderAction, payload);
     }
 }

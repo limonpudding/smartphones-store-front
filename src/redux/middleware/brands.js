@@ -1,4 +1,4 @@
-import {GetBrandsAction, SetBrands} from "../actions/brands";
+import {AddBrandAction, GetBrands, GetBrandsAction, SetBrands} from "../actions/brands";
 
 export default function brandsMiddleware() {
     return store => next => action => {
@@ -13,6 +13,18 @@ export default function brandsMiddleware() {
                     response => response.json()
                 ).then(
                     response => store.dispatch(new SetBrands(response))
+                )
+                break;
+            case AddBrandAction:
+                fetch("http://localhost:8080/brands", {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(action.payload)
+                }).then(
+                    store.dispatch(new GetBrands())
                 )
                 break;
         }
