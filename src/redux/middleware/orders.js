@@ -1,14 +1,12 @@
 import {AddOrderAction, GetOrders, GetOrdersAction, SetOrders} from "../actions/orders";
+import {authHeader} from "../../components/login/auth-header";
 
 export default function ordersMiddleware() {
     return store => next => action => {
         switch (action.type) {
             case GetOrdersAction:
                 fetch("http://localhost:8080/purchaseOrders", {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    }
+                    headers: authHeader(),
                 }).then(
                     response => response.json()
                 ).then(
@@ -18,10 +16,7 @@ export default function ordersMiddleware() {
             case AddOrderAction:
                 fetch("http://localhost:8080/orders", {
                     method: 'post',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
+                    headers: authHeader(),
                     body: JSON.stringify(action.payload)
                 }).then(
                     store.dispatch(new GetOrders())

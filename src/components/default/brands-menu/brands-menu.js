@@ -6,7 +6,7 @@ import {
 } from "reactstrap";
 import {NavLink as kek} from "reactstrap";
 import {connect} from "react-redux";
-import {selectBrands} from "../../../redux/selectors/brands";
+import {selectBrands} from "../../../redux/selectors/all";
 import {GetBrands} from "../../../redux/actions/brands";
 import {NavLink} from "react-router-dom";
 

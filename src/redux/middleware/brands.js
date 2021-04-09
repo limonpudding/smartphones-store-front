@@ -1,14 +1,12 @@
 import {AddBrandAction, GetBrands, GetBrandsAction, SetBrands} from "../actions/brands";
+import {authHeader} from "../../components/login/auth-header";
 
 export default function brandsMiddleware() {
     return store => next => action => {
         switch (action.type) {
             case GetBrandsAction:
                 fetch("/brands", {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    }
+                    headers: authHeader(),
                 }).then(
                     response => response.json()
                 ).then(
@@ -18,10 +16,7 @@ export default function brandsMiddleware() {
             case AddBrandAction:
                 fetch("/brands", {
                     method: 'post',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
+                    headers: authHeader(),
                     body: JSON.stringify(action.payload)
                 }).then(
                     store.dispatch(new GetBrands())

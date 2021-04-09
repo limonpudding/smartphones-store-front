@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Form, FormGroup, FormText, Input, Label} from "reactstrap";
+import {Button, Form, FormGroup, Input} from "reactstrap";
 
 const Register = () => {
     return (

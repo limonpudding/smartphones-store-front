@@ -2,6 +2,7 @@ import React from "react";
 import {Col, Row, Table} from "reactstrap";
 import {connect} from "react-redux";
 import {SetOrders} from "../../../redux/actions/orders";
+import {selectOrders} from "../../../redux/selectors/all";
 
 const Orders = (props) => {
 
@@ -44,7 +45,7 @@ const Orders = (props) => {
 }
 
 const mapStateToProps = state => ({
-    orders: state.orders.orders
+    orders: selectOrders(state)
 })
 
 const mapDispatchToProps = dispatch => {

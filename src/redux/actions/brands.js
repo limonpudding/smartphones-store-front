@@ -5,7 +5,7 @@ export const SetBrandsAction = "SetBrandsAction";
 export const AddBrandAction = "AddBrandAction";
 
 export class GetBrands extends BaseAction {
-    constructor(payload = {}) {
+    constructor(payload) {
         super(GetBrandsAction, payload);
     }
 }

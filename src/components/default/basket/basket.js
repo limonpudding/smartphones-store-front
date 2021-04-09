@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Col, Row, Table} from "reactstrap";
 import {connect} from "react-redux";
 import {SetBasket} from "../../../redux/actions/basket";
+import {selectBasket} from "../../../redux/selectors/all";
 
 const Basket = (props) => {
 
@@ -53,7 +54,7 @@ const Basket = (props) => {
 }
 
 const mapStateToProps = state => ({
-    basket: state.basket.basket
+    basket: selectBasket(state)
 })
 
 const mapDispatchToProps = dispatch => {

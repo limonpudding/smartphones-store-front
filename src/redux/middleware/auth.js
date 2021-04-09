@@ -1,5 +1,4 @@
-import {DoLoginAction} from "../actions/auth";
-import {SetRole} from "../actions/role";
+import {DoLoginAction, SetUserDetail} from "../actions/auth";
 
 export default function authMiddleware() {
     return store => next => action => {
@@ -15,7 +14,15 @@ export default function authMiddleware() {
                 }).then(
                     response => response.json()
                 ).then(
-                    response => store.dispatch(new SetRole(response))
+                    response => {
+                        let userDetail = {
+                            userName: action.payload.userName,
+                            basic: btoa(action.payload.userName + ':' + action.payload.password),
+                            role: response
+                        };
+                        sessionStorage.setItem('userDetail', JSON.stringify(userDetail));
+                        store.dispatch(new SetUserDetail(userDetail));
+                    }
                 )
                 break;
         }

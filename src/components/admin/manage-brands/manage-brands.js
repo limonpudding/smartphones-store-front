@@ -9,7 +9,7 @@ import {
     Table
 } from "reactstrap";
 import {connect} from "react-redux";
-import {selectBrands} from "../../../redux/selectors/brands";
+import {selectBrands, selectUserDetail} from "../../../redux/selectors/all";
 import {AddBrand, GetBrands} from "../../../redux/actions/brands";
 
 const ManageBrands = (props) => {
@@ -72,7 +72,8 @@ const ManageBrands = (props) => {
 }
 
 const mapStateToProps = state => ({
-    brands: selectBrands(state)
+    brands: selectBrands(state),
+    userDetail: selectUserDetail(state)
 })
 
 const mapDispatchToProps = dispatch => {

@@ -10,9 +10,9 @@ import {
     Table
 } from "reactstrap";
 import {connect} from "react-redux";
-import {selectSmartphones} from "../../../redux/selectors/smartphones";
+import {selectSmartphones} from "../../../redux/selectors/all";
+import {selectBrands} from "../../../redux/selectors/all";
 import {AddSmartphone, GetSmartphones, SetSmartphones} from "../../../redux/actions/smartphones";
-import {selectBrands} from "../../../redux/selectors/brands";
 import {GetBrands} from "../../../redux/actions/brands";
 
 const ManageCatalog = (props) => {

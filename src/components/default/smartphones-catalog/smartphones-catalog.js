@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {Row, Col} from "reactstrap";
 
-import {selectSmartphones} from "../../../redux/selectors/smartphones";
+import {selectSmartphones} from "../../../redux/selectors/all";
 
 import SmartphoneCard from "../smartphone-card/smartphone-card";
 import {GetSmartphones} from "../../../redux/actions/smartphones";

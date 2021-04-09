@@ -1,6 +1,6 @@
 import React from "react";
 import {Switch, Route} from "react-router";
-import {Col, Container, Row} from "reactstrap";
+import {Container} from "reactstrap";
 import Login from "../login/login";
 import {BrowserRouter as Router} from "react-router-dom";
 import TopMenu from "../top-menu/top-menu";

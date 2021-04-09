@@ -2,6 +2,7 @@ import React from "react";
 import {Alert, Button, Col} from "reactstrap";
 import {connect} from "react-redux";
 import {SetBasket} from "../../../redux/actions/basket";
+import {selectBasket} from "../../../redux/selectors/all";
 
 const SmartphoneCard = (props) => {
 
@@ -33,7 +34,7 @@ const SmartphoneCard = (props) => {
 }
 
 const mapStateToProps = state => ({
-    basket: state.basket.basket
+    basket: selectBasket(state)
 })
 
 const mapDispatchToProps = dispatch => {
