@@ -1,4 +1,10 @@
-import {AddSmartphoneAction, GetSmartphones, GetSmartphonesAction, SetSmartphones} from "../actions/smartphones";
+import {
+    AddSmartphoneAction,
+    EditSmartphoneAction,
+    GetSmartphones,
+    GetSmartphonesAction,
+    SetSmartphones
+} from "../actions/smartphones";
 import {authHeader} from "../../components/login/auth-header";
 
 export default function smartphonesMiddleware() {
@@ -15,6 +21,15 @@ export default function smartphonesMiddleware() {
                 break;
             case AddSmartphoneAction:
                 fetch("/smartphones", {
+                    method: 'post',
+                    headers: authHeader(),
+                    body: JSON.stringify(action.payload)
+                }).then(
+                    store.dispatch(new GetSmartphones())
+                )
+                break;
+            case EditSmartphoneAction:
+                fetch("/smartphones/" + action.payload.id, {
                     method: 'post',
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)

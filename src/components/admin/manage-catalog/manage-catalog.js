@@ -20,7 +20,6 @@ const ManageCatalog = (props) => {
     useEffect(() => {
         props.getSmartphones();
         props.getBrands();
-
     }, []);
 
     const [dropdownOpen, setDropdownOpen] = useState(false);

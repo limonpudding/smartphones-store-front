@@ -17,3 +17,11 @@ export const selectSmartphones = (state) => {
 export const selectBasket = (state) => {
     return state.basket.basket
 }
+
+export const selectUsers = (state) => {
+    return state.users.users
+}
+
+export const selectRoles = (state) => {
+    return state.roles.roles
+}

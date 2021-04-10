@@ -10,6 +10,7 @@ import Orders from "../default/orders/orders";
 import Register from "../register/register";
 import ManageCatalog from "../admin/manage-catalog/manage-catalog";
 import ManageBrands from "../admin/manage-brands/manage-brands";
+import ManageUsers from "../admin/manage-users/manage-users";
 
 const MainPage = () => {
 
@@ -42,6 +43,9 @@ const MainPage = () => {
                     </Route>
                     <Route path="/manage-brands">
                         <ManageBrands/>
+                    </Route>
+                    <Route path="/manage-users">
+                        <ManageUsers/>
                     </Route>
                 </Switch>
                 </div>

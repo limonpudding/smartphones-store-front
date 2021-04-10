@@ -19,9 +19,6 @@ const TopMenu = (props) => {
     const toggle = () => setIsOpen(!isOpen);
 
     const logout = () => {
-        // sessionStorage.removeItem('userName');
-        // sessionStorage.removeItem('basic');
-        // sessionStorage.removeItem('role');
         props.setUserDetail({
             userName: '',
             basic: '',
@@ -88,6 +85,13 @@ const TopMenu = (props) => {
                             &&
                             <NavItem>
                                 <NavLink to="/manage-brands">Управление брендами</NavLink>
+                            </NavItem>
+                        }
+                        {
+                            props.role && props.role === 'ADMIN'
+                            &&
+                            <NavItem>
+                                <NavLink to="/manage-users">Управление пользователями</NavLink>
                             </NavItem>
                             // <NavItem>
                             //     <NavLink to="/manage-orders">Управление заказами</NavLink>

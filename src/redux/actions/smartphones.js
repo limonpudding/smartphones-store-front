@@ -7,6 +7,7 @@ import BaseAction from "../helpers/BaseAction";
 export const GetSmartphonesAction = "GetSmartphonesAction";
 export const SetSmartphonesAction = "SetSmartphonesAction";
 export const AddSmartphoneAction = "AddSmartphoneAction";
+export const EditSmartphoneAction = "EditSmartphoneAction";
 
 /**
  * GetSmartphones action class
@@ -32,5 +33,14 @@ export class SetSmartphones extends BaseAction {
 export class AddSmartphone extends BaseAction {
     constructor(payload) {
         super(AddSmartphoneAction, payload);
+    }
+}
+
+/**
+ * AddSmartphoneAction action class
+ */
+export class EditSmartphone extends BaseAction {
+    constructor(payload) {
+        super(EditSmartphoneAction, payload);
     }
 }
