@@ -14,7 +14,7 @@ const BrandsMenu = (props) => {
 
     useEffect(() => {
         props.getBrands();
-    });
+    }, []);
 
     return (
         <Col>

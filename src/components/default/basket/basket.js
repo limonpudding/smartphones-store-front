@@ -2,13 +2,25 @@ import React from "react";
 import {Button, Col, Row, Table} from "reactstrap";
 import {connect} from "react-redux";
 import {SetBasket} from "../../../redux/actions/basket";
-import {selectBasket} from "../../../redux/selectors/all";
+import {selectBasket, selectUserDetail} from "../../../redux/selectors/all";
+import {Redirect} from "react-router";
+import {AddOrder} from "../../../redux/actions/orders";
 
 const Basket = (props) => {
 
     const removeFromBasket = (id) => {
         let actualBasket = props.basket.filter(smartphone => smartphone.id !== id);
         props.setBasket(actualBasket);
+    }
+
+
+    const createOrder = () => {
+        let order = {
+            smartphones: props.basket,
+            userName: props.userDetail.userName
+        }
+        props.addOrder(order);
+        return <Redirect to={"/orders"}/>
     }
 
     return (
@@ -44,7 +56,7 @@ const Basket = (props) => {
                             </tbody>
                         </Table>
                         <div className={"action-buttons"}>
-                            <Button>Оформить заказ</Button>
+                            <Button onClick={createOrder}>Оформить заказ</Button>
                         </div>
                     </div>
                 </div>
@@ -54,12 +66,14 @@ const Basket = (props) => {
 }
 
 const mapStateToProps = state => ({
-    basket: selectBasket(state)
+    basket: selectBasket(state),
+    userDetail: selectUserDetail(state)
 })
 
 const mapDispatchToProps = dispatch => {
     return {
-        setBasket: (basket) => dispatch(new SetBasket(basket))
+        setBasket: (basket) => dispatch(new SetBasket(basket)),
+        addOrder: (order) => dispatch(new AddOrder(order)),
     }
 }
 

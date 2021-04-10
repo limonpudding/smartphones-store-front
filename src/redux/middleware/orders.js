@@ -5,7 +5,7 @@ export default function ordersMiddleware() {
     return store => next => action => {
         switch (action.type) {
             case GetOrdersAction:
-                fetch("http://localhost:8080/purchaseOrders", {
+                fetch("/purchaseOrders", {
                     headers: authHeader(),
                 }).then(
                     response => response.json()
@@ -14,7 +14,7 @@ export default function ordersMiddleware() {
                 )
                 break;
             case AddOrderAction:
-                fetch("http://localhost:8080/orders", {
+                fetch("/purchaseOrders", {
                     method: 'post',
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)
