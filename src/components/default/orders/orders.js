@@ -30,7 +30,7 @@ const Orders = (props) => {
                                             <th scope="row">1</th>
                                             <td>{order.number}</td>
                                             <td>{order.fullPrice}</td>
-                                            <td>{order.price}</td>
+                                            <td>{order.status}</td>
                                         </tr>
                                     )
                                 })

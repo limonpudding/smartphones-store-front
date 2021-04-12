@@ -11,7 +11,7 @@ const ManageBrand = (props) => {
 
     useEffect(() => {
         if (props.brand) {
-            setItem(props.brand);
+            setItem(Object.assign({}, props.brand));
         } else {
             props.toggle();
         }

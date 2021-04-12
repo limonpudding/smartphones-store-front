@@ -12,7 +12,7 @@ const ManageProduct = (props) => {
 
     useEffect(() => {
         if (props.smartphone) {
-            setItem(props.smartphone);
+            setItem(Object.assign({}, props.smartphone));
         } else {
             props.toggle();
         }
@@ -49,7 +49,7 @@ const ManageProduct = (props) => {
                         {
                             props.brands && props.brands.map(brand => {
                                 return (
-                                    <option key={'brand-' + brand} value={brand} selected={item.brand === brand}>{brand.name}</option>
+                                    <option key={'brand-' + brand.id} value={brand}>{brand.name}</option>
                                 )
                             })
                         }

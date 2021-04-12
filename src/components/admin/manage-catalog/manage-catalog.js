@@ -98,7 +98,7 @@ const ManageCatalog = (props) => {
                                 {
                                     props.brands && props.brands.map(brand => {
                                         return (
-                                            <option key={'role-' + brand} value={brand} selected={item.brand === brand}>{brand.name}</option>
+                                            <option key={'brand-' + brand.id} value={brand}>{brand.name}</option>
                                         )
                                     })
                                 }

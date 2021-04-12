@@ -11,6 +11,7 @@ import Register from "../register/register";
 import ManageCatalog from "../admin/manage-catalog/manage-catalog";
 import ManageBrands from "../admin/manage-brands/manage-brands";
 import ManageUsers from "../admin/manage-users/manage-users";
+import ManageOrders from "../admin/manage-orders/manage-orders";
 
 const MainPage = () => {
 
@@ -37,6 +38,9 @@ const MainPage = () => {
                     </Route>
                     <Route path="/register">
                         <Register/>
+                    </Route>
+                    <Route path="/manage-orders">
+                        <ManageOrders/>
                     </Route>
                     <Route path="/manage-catalog">
                         <ManageCatalog/>

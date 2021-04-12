@@ -1,4 +1,4 @@
-import {AddOrderAction, GetOrders, GetOrdersAction, SetOrders} from "../actions/orders";
+import {AddOrderAction, GetOrders, GetOrdersAction, SetOrders, UpdateOrderAction} from "../actions/orders";
 import {authHeader} from "../../components/login/auth-header";
 
 export default function ordersMiddleware() {
@@ -18,6 +18,14 @@ export default function ordersMiddleware() {
                     method: 'POST',
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)
+                }).then(
+                    store.dispatch(new GetOrders())
+                )
+                break;
+            case UpdateOrderAction:
+                fetch("/purchaseOrders/submit/"+action.payload.id, {
+                    method: 'PUT',
+                    headers: authHeader()
                 }).then(
                     store.dispatch(new GetOrders())
                 )

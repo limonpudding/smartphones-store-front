@@ -12,7 +12,7 @@ const ManageUser = (props) => {
 
     useEffect(() => {
         if (props.user) {
-            setItem(props.user);
+            setItem(Object.assign({}, props.user));
         } else {
             props.toggle();
         }
