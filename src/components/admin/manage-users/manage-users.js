@@ -12,6 +12,7 @@ import {connect} from "react-redux";
 import {selectRoles, selectUsers} from "../../../redux/selectors/all";
 import {AddUser, GetUsers} from "../../../redux/actions/users";
 import {GetRoles} from "../../../redux/actions/roles";
+import ManageUser from "./manage-user";
 
 const ManageUsers = (props) => {
 
@@ -21,11 +22,18 @@ const ManageUsers = (props) => {
     },[]);
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
-
     const toggleDropDown = () => setDropdownOpen(!dropdownOpen);
 
-    const edit = () => {
+    const [editing, setEditing] = useState(false);
+    const toggleEditing = () => setEditing(!editing);
 
+    const [editingUser, setEditingUser] = useState();
+
+
+
+    const edit = (id) => {
+        setEditingUser(props.users.find(user => user.id === id));
+        setEditing(true);
     }
 
     const add = () => {
@@ -52,6 +60,7 @@ const ManageUsers = (props) => {
                                 <th>ID</th>
                                 <th>Имя пользователя</th>
                                 <th>Роль</th>
+                                <th>Действие</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -87,6 +96,9 @@ const ManageUsers = (props) => {
                             </InputGroupButtonDropdown>
                             <InputGroupAddon addonType="append" className={"action-buttons"}><Button onClick={add} color="secondary">Добавить</Button></InputGroupAddon>
                         </InputGroup>
+                        {
+                            editing ? <ManageUser user={editingUser} toggle={toggleEditing} /> : null
+                        }
                     </div>
                 </div>
             </Col>
