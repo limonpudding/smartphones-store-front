@@ -1,4 +1,4 @@
-import {AddBrandAction, GetBrands, GetBrandsAction, SetBrands} from "../actions/brands";
+import {AddBrandAction, GetBrands, GetBrandsAction, SetBrands, UpdateBrandAction} from "../actions/brands";
 import {authHeader} from "../../components/login/auth-header";
 
 export default function brandsMiddleware() {
@@ -16,6 +16,15 @@ export default function brandsMiddleware() {
             case AddBrandAction:
                 fetch("/brands", {
                     method: 'post',
+                    headers: authHeader(),
+                    body: JSON.stringify(action.payload)
+                }).then(
+                    store.dispatch(new GetBrands())
+                )
+                break;
+            case UpdateBrandAction:
+                fetch("/brands/" + action.payload.id, {
+                    method: 'put',
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)
                 }).then(

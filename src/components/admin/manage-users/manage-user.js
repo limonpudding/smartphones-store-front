@@ -38,6 +38,7 @@ const ManageUser = (props) => {
     return (
         <div className="ts-modal">
             <div className="ts-modal-content">
+                <h4>Редактирование пользователя:</h4>
                 <InputGroup>
                     <Input type={"text"} placeholder="Имя пользователя" onChange={event => item.userName = event.target.value} defaultValue={item.userName}/>
                     <Input type={"text"} placeholder="Пароль" onChange={event => item.password = event.target.value} defaultValue={item.password}/>

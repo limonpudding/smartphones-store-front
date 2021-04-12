@@ -9,8 +9,9 @@ import {
     Table
 } from "reactstrap";
 import {connect} from "react-redux";
-import {selectBrands, selectUserDetail} from "../../../redux/selectors/all";
+import {selectBrands} from "../../../redux/selectors/all";
 import {AddBrand, GetBrands} from "../../../redux/actions/brands";
+import ManageBrand from "./manage-brand";
 
 const ManageBrands = (props) => {
 
@@ -18,8 +19,15 @@ const ManageBrands = (props) => {
         props.getBrands();
     }, []);
 
-    const edit = () => {
+    const [editing, setEditing] = useState(false);
+    const toggleEditing = () => setEditing(!editing);
 
+    const [editingBrand, setEditingBrand] = useState();
+
+
+    const edit = (id) => {
+        setEditingBrand(props.brands.find(brand => brand.id === id));
+        setEditing(true);
     }
 
     const add = () => {
@@ -43,6 +51,7 @@ const ManageBrands = (props) => {
                             <tr>
                                 <th>ID</th>
                                 <th>Наименование бренда</th>
+                                <th>Действие</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -64,6 +73,9 @@ const ManageBrands = (props) => {
                             <Input placeholder="Наименование" onChange={ event =>  item.name = event.target.value}/>
                             <InputGroupAddon addonType="append" className={"action-buttons"}><Button onClick={add} color="secondary">Добавить</Button></InputGroupAddon>
                         </InputGroup>
+                        {
+                            editing ? <ManageBrand brand={editingBrand} toggle={toggleEditing} /> : null
+                        }
                     </div>
                 </div>
             </Col>
@@ -72,8 +84,7 @@ const ManageBrands = (props) => {
 }
 
 const mapStateToProps = state => ({
-    brands: selectBrands(state),
-    userDetail: selectUserDetail(state)
+    brands: selectBrands(state)
 })
 
 const mapDispatchToProps = dispatch => {
