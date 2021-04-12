@@ -82,18 +82,16 @@ const ManageUsers = (props) => {
                         <InputGroup>
                             <Input placeholder="Имя пользователя" onChange={ event =>  item.userName = event.target.value}/>
                             <Input placeholder="Пароль" onChange={ event =>  item.password = event.target.value}/>
-                            <InputGroupButtonDropdown addonType="append" isOpen={dropdownOpen} toggle={toggleDropDown}>
-                                <DropdownToggle caret>{item.userRole ? item.userRole : 'Роль'}</DropdownToggle>
-                                <DropdownMenu>
-                                    {
-                                        props.roles && props.roles.map(role => {
-                                            return (
-                                                <DropdownItem onClick={() => item.userRole = role} key={`role-${role}`}>{role}</DropdownItem>
-                                            )
-                                        })
-                                    }
-                                </DropdownMenu>
-                            </InputGroupButtonDropdown>
+                            <Input type={"select"} placeholder="Роль" onChange={event => item.userRole = event.target.value} defaultValue={item.userRole}>
+                                {
+                                    props.roles && props.roles.map(role => {
+                                        return (
+                                            <option key={'role-' + role} value={role} selected={item.userRole === role}>{role}</option>
+
+                                        )
+                                    })
+                                }
+                            </Input>
                             <InputGroupAddon addonType="append" className={"action-buttons"}><Button onClick={add} color="secondary">Добавить</Button></InputGroupAddon>
                         </InputGroup>
                         {

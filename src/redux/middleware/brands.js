@@ -15,7 +15,7 @@ export default function brandsMiddleware() {
                 break;
             case AddBrandAction:
                 fetch("/brands", {
-                    method: 'post',
+                    method: 'POST',
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)
                 }).then(
@@ -24,7 +24,7 @@ export default function brandsMiddleware() {
                 break;
             case UpdateBrandAction:
                 fetch("/brands/" + action.payload.id, {
-                    method: 'put',
+                    method: 'PUT',
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)
                 }).then(

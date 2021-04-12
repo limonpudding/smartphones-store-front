@@ -21,7 +21,7 @@ export default function smartphonesMiddleware() {
                 break;
             case AddSmartphoneAction:
                 fetch("/smartphones", {
-                    method: 'post',
+                    method: 'POST',
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)
                 }).then(
@@ -30,7 +30,7 @@ export default function smartphonesMiddleware() {
                 break;
             case EditSmartphoneAction:
                 fetch("/smartphones/" + action.payload.id, {
-                    method: 'post',
+                    method: 'PUT',
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)
                 }).then(

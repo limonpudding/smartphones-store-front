@@ -15,7 +15,7 @@ export default function ordersMiddleware() {
                 break;
             case AddOrderAction:
                 fetch("/purchaseOrders", {
-                    method: 'post',
+                    method: 'POST',
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)
                 }).then(

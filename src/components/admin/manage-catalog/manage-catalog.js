@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from "react";
 import {
     Button,
-    Col, DropdownItem, DropdownMenu, DropdownToggle,
+    Col,
     Input,
     InputGroup,
     InputGroupAddon,
-    InputGroupButtonDropdown,
     Row,
     Table
 } from "reactstrap";
@@ -14,6 +13,7 @@ import {selectSmartphones} from "../../../redux/selectors/all";
 import {selectBrands} from "../../../redux/selectors/all";
 import {AddSmartphone, GetSmartphones, SetSmartphones} from "../../../redux/actions/smartphones";
 import {GetBrands} from "../../../redux/actions/brands";
+import ManageProduct from "./manage-product";
 
 const ManageCatalog = (props) => {
 
@@ -23,11 +23,16 @@ const ManageCatalog = (props) => {
     }, []);
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
-
     const toggleDropDown = () => setDropdownOpen(!dropdownOpen);
 
-    const edit = () => {
+    const [editing, setEditing] = useState(false);
+    const toggleEditing = () => setEditing(!editing);
 
+    const [editingProduct, setEditingProduct] = useState();
+
+    const edit = (id) => {
+        setEditingProduct(props.smartphones.find(smartphone => smartphone.id === id));
+        setEditing(true);
     }
 
     const add = () => {
@@ -63,7 +68,7 @@ const ManageCatalog = (props) => {
                                 <th>Объём ОЗУ</th>
                                 <th>Объём ПЗУ</th>
                                 <th>Цена</th>
-                                <th>Изменить</th>
+                                <th>Действие</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -89,25 +94,27 @@ const ManageCatalog = (props) => {
                         <h4>Добавить смартфон в каталог:</h4>
                         <InputGroup>
                             <Input placeholder="Модель" onChange={ event =>  item.modelName = event.target.value}/>
-                            <InputGroupButtonDropdown addonType="append" isOpen={dropdownOpen} toggle={toggleDropDown}>
-                                <DropdownToggle caret>{item.brand.name ? item.brand.name : 'Бренд'}</DropdownToggle>
-                                <DropdownMenu>
-                                    {
-                                        props.brands && props.brands.map(brand => {
-                                            return (
-                                                <DropdownItem onClick={() => item.brand = brand}>{brand.name}</DropdownItem>
-                                            )
-                                        })
-                                    }
-                                </DropdownMenu>
-                            </InputGroupButtonDropdown>
+                            <Input type={"select"} placeholder="Бренд" onChange={event => item.brand = event.target.value}>
+                                {
+                                    props.brands && props.brands.map(brand => {
+                                        return (
+                                            <option key={'role-' + brand} value={brand} selected={item.brand === brand}>{brand.name}</option>
+                                        )
+                                    })
+                                }
+                            </Input>
                             <Input placeholder="Процессор" onChange={ event =>  item.cpu = event.target.value}/>
                             <Input placeholder="Графический процессор" onChange={ event =>  item.gpu = event.target.value}/>
                             <Input placeholder="Объём ОЗУ" onChange={ event =>  item.ram = event.target.value}/>
                             <Input placeholder="Объём ПЗУ" onChange={ event =>  item.rom = event.target.value}/>
                             <Input placeholder="Цена" onChange={ event =>  item.price = event.target.value}/>
-                            <InputGroupAddon addonType="append" className={"action-buttons"}><Button onClick={add} color="secondary">Добавить</Button></InputGroupAddon>
+                            <InputGroupAddon addonType="append" className={"action-buttons"}>
+                                <Button onClick={add} color="secondary">Добавить</Button>
+                            </InputGroupAddon>
                         </InputGroup>
+                        {
+                            editing ? <ManageProduct smartphone={editingProduct} toggle={toggleEditing} /> : null
+                        }
                     </div>
                 </div>
             </Col>
@@ -123,7 +130,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
     return {
         getSmartphones: () => dispatch(new GetSmartphones()),
-        setSmartphones: (smartphones) => dispatch(new SetSmartphones(smartphones)),
         addSmartphone: (smartphone) => dispatch(new AddSmartphone(smartphone)),
         getBrands: () => dispatch(new GetBrands())
     }

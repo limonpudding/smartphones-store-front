@@ -5,7 +5,7 @@ export default function authMiddleware() {
         switch (action.type) {
             case DoLoginAction:
                 fetch("/login", {
-                    method: 'post',
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'

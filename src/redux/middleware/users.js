@@ -15,7 +15,7 @@ export default function usersMiddleware() {
                 break;
             case AddUserAction:
                 fetch("/users", {
-                    method: 'post',
+                    method: 'POST',
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)
                 }).then(
@@ -24,7 +24,7 @@ export default function usersMiddleware() {
                 break;
             case UpdateUserAction:
                 fetch("/users/" + action.payload.id, {
-                    method: 'put',
+                    method: 'PUT',
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)
                 }).then(
