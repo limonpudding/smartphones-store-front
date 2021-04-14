@@ -11,7 +11,7 @@ import {
 import {connect} from "react-redux";
 import {selectSmartphones} from "../../../redux/selectors/all";
 import {selectBrands} from "../../../redux/selectors/all";
-import {AddSmartphone, GetSmartphones, SetSmartphones} from "../../../redux/actions/smartphones";
+import {AddSmartphone, GetSmartphones, RemoveSmartphone, SetSmartphones} from "../../../redux/actions/smartphones";
 import {GetBrands} from "../../../redux/actions/brands";
 import ManageProduct from "./manage-product";
 
@@ -33,6 +33,10 @@ const ManageCatalog = (props) => {
     const edit = (id) => {
         setEditingProduct(props.smartphones.find(smartphone => smartphone.id === id));
         setEditing(true);
+    }
+
+    const remove = (id) => {
+        props.removeSmartphone(id);
     }
 
     const add = () => {
@@ -68,7 +72,7 @@ const ManageCatalog = (props) => {
                                 <th>Объём ОЗУ</th>
                                 <th>Объём ПЗУ</th>
                                 <th>Цена</th>
-                                <th>Действие</th>
+                                <th colSpan={2}>Действие</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -85,6 +89,7 @@ const ManageCatalog = (props) => {
                                             <td>{smartphone.rom}</td>
                                             <td>{smartphone.price}</td>
                                             <td onClick={() => edit(smartphone.id)}><strong className={'edit-icon'}>Изменить</strong></td>
+                                            <td onClick={() => remove(smartphone.id)}><strong className={'delete-icon'}>Удалить</strong></td>
                                         </tr>
                                     )
                                 })
@@ -94,11 +99,12 @@ const ManageCatalog = (props) => {
                         <h4>Добавить смартфон в каталог:</h4>
                         <InputGroup>
                             <Input placeholder="Модель" onChange={ event =>  item.modelName = event.target.value}/>
-                            <Input type={"select"} placeholder="Бренд" onChange={event => item.brand = event.target.value}>
+                            <Input type={"select"} onChange={event => item.brand = JSON.parse(event.target.value)}>
+                                <option key={'brand-none'} />
                                 {
                                     props.brands && props.brands.map(brand => {
                                         return (
-                                            <option key={'brand-' + brand.id} value={brand}>{brand.name}</option>
+                                            <option key={'brand-' + brand.id} value={JSON.stringify(brand)}>{brand.name}</option>
                                         )
                                     })
                                 }
@@ -131,6 +137,7 @@ const mapDispatchToProps = dispatch => {
     return {
         getSmartphones: () => dispatch(new GetSmartphones()),
         addSmartphone: (smartphone) => dispatch(new AddSmartphone(smartphone)),
+        removeSmartphone: (id) => dispatch(new RemoveSmartphone(id)),
         getBrands: () => dispatch(new GetBrands())
     }
 }

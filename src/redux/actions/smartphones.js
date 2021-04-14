@@ -8,6 +8,7 @@ export const GetSmartphonesAction = "GetSmartphonesAction";
 export const SetSmartphonesAction = "SetSmartphonesAction";
 export const AddSmartphoneAction = "AddSmartphoneAction";
 export const EditSmartphoneAction = "EditSmartphoneAction";
+export const RemoveSmartphoneAction = "RemoveSmartphoneAction";
 
 /**
  * GetSmartphones action class
@@ -42,5 +43,14 @@ export class AddSmartphone extends BaseAction {
 export class EditSmartphone extends BaseAction {
     constructor(payload) {
         super(EditSmartphoneAction, payload);
+    }
+}
+
+/**
+ * RemoveSmartphoneAction action class
+ */
+export class RemoveSmartphone extends BaseAction {
+    constructor(payload) {
+        super(RemoveSmartphoneAction, payload);
     }
 }

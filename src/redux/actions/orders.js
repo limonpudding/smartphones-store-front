@@ -1,6 +1,7 @@
 import BaseAction from "../helpers/BaseAction";
 
 export const GetOrdersAction = "GetOrdersAction";
+export const GetOrdersByUserAction = "GetOrdersByUserAction";
 export const SetOrdersAction = "SetOrdersAction";
 export const AddOrderAction = "AddOrderAction";
 export const UpdateOrderAction = "UpdateOrderAction";
@@ -8,6 +9,12 @@ export const UpdateOrderAction = "UpdateOrderAction";
 export class GetOrders extends BaseAction {
     constructor(payload = {}) {
         super(GetOrdersAction, payload);
+    }
+}
+
+export class GetOrdersByUser extends BaseAction {
+    constructor(payload = {}) {
+        super(GetOrdersByUserAction, payload);
     }
 }
 

@@ -4,6 +4,7 @@ export const GetUsersAction = "GetUsersAction";
 export const SetUsersAction = "SetUsersAction";
 export const AddUserAction = "AddUserAction";
 export const UpdateUserAction = "UpdateUserAction";
+export const RemoveUserAction = "RemoveUserAction";
 
 
 export class GetUsers extends BaseAction {
@@ -27,5 +28,11 @@ export class AddUser extends BaseAction {
 export class UpdateUser extends BaseAction {
     constructor(payload) {
         super(UpdateUserAction, payload);
+    }
+}
+
+export class RemoveUser extends BaseAction {
+    constructor(payload) {
+        super(RemoveUserAction, payload);
     }
 }

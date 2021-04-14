@@ -1,11 +1,14 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Col, Row, Table} from "reactstrap";
 import {connect} from "react-redux";
-import {SetOrders} from "../../../redux/actions/orders";
+import {GetOrdersByUser, SetOrders} from "../../../redux/actions/orders";
 import {selectOrders} from "../../../redux/selectors/all";
 
 const Orders = (props) => {
 
+    useEffect(() => {
+        props.getOrders();
+    },[])
 
     return (
         <Row>
@@ -50,6 +53,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
     return {
+        getOrders: () => dispatch(new GetOrdersByUser()),
         setBasket: (basket) => dispatch(new SetOrders(basket))
     }
 }

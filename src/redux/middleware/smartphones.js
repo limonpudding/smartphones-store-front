@@ -2,7 +2,7 @@ import {
     AddSmartphoneAction,
     EditSmartphoneAction,
     GetSmartphones,
-    GetSmartphonesAction,
+    GetSmartphonesAction, RemoveSmartphoneAction,
     SetSmartphones
 } from "../actions/smartphones";
 import {authHeader} from "../../components/login/auth-header";
@@ -33,6 +33,14 @@ export default function smartphonesMiddleware() {
                     method: 'PUT',
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)
+                }).then(
+                    store.dispatch(new GetSmartphones())
+                )
+                break;
+            case RemoveSmartphoneAction:
+                fetch("/smartphones/" + action.payload, {
+                    method: 'DELETE',
+                    headers: authHeader()
                 }).then(
                     store.dispatch(new GetSmartphones())
                 )

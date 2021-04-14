@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 import {connect} from "react-redux";
 import {selectRoles, selectUsers} from "../../../redux/selectors/all";
-import {AddUser, GetUsers} from "../../../redux/actions/users";
+import {AddUser, GetUsers, RemoveUser} from "../../../redux/actions/users";
 import {GetRoles} from "../../../redux/actions/roles";
 import ManageUser from "./manage-user";
 
@@ -34,6 +34,10 @@ const ManageUsers = (props) => {
     const edit = (id) => {
         setEditingUser(props.users.find(user => user.id === id));
         setEditing(true);
+    }
+
+    const remove = (id) => {
+        props.removeUser(id);
     }
 
     const add = () => {
@@ -60,7 +64,7 @@ const ManageUsers = (props) => {
                                 <th>ID</th>
                                 <th>Имя пользователя</th>
                                 <th>Роль</th>
-                                <th>Действие</th>
+                                <th colSpan={2}>Действие</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -72,6 +76,7 @@ const ManageUsers = (props) => {
                                             <td>{user.userName}</td>
                                             <td>{user.userRole}</td>
                                             <td onClick={() => edit(user.id)}><strong className={'edit-icon'}>Изменить</strong></td>
+                                            <td onClick={() => remove(user.id)}><strong className={'delete-icon'}>Удалить</strong></td>
                                         </tr>
                                     )
                                 })
@@ -82,7 +87,8 @@ const ManageUsers = (props) => {
                         <InputGroup>
                             <Input placeholder="Имя пользователя" onChange={ event =>  item.userName = event.target.value}/>
                             <Input placeholder="Пароль" onChange={ event =>  item.password = event.target.value}/>
-                            <Input type={"select"} placeholder="Роль" onChange={event => item.userRole = event.target.value} defaultValue={item.userRole}>
+                            <Input type={"select"} onChange={event => item.userRole = event.target.value} defaultValue={item.userRole}>
+                                <option key={'role-none'} />
                                 {
                                     props.roles && props.roles.map(role => {
                                         return (
@@ -113,7 +119,8 @@ const mapDispatchToProps = dispatch => {
     return {
         getUsers: () => dispatch(new GetUsers()),
         getRoles: () => dispatch(new GetRoles()),
-        addUser: (user) => dispatch(new AddUser(user))
+        addUser: (user) => dispatch(new AddUser(user)),
+        removeUser: (id) => dispatch(new RemoveUser(id))
     }
 }
 

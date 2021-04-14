@@ -44,8 +44,8 @@ const ManageOrders = (props) => {
                                             <th scope="row">{order.id}</th>
                                             <td>{order.number}</td>
                                             <td>{order.fullPrice}</td>
-                                            <td>{order.status}</td>
                                             <td>{order.userName}</td>
+                                            <td>{order.status}</td>
                                             {
                                                 order.status && order.status === "PROCESSING" &&
                                                 <td onClick={() => submitOrder(order.id)}>

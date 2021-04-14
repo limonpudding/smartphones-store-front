@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Button, Form, FormGroup, Input} from "reactstrap";
 import {connect} from "react-redux";
 import {selectUserDetail} from "../../redux/selectors/all";
-import {DoLogin, SetUserDetail} from "../../redux/actions/auth";
+import {DoLogin} from "../../redux/actions/auth";
 import {Redirect} from "react-router";
 
 const Login = (props) => {
@@ -44,8 +44,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
     return {
-        login: (basic) => dispatch(new DoLogin(basic)),
-        setUserDetail: (detail) => dispatch(new SetUserDetail(detail))
+        login: (user) => dispatch(new DoLogin(user))
     }
 }
 
