@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {
     Button,
-    Col, DropdownItem, DropdownMenu, DropdownToggle,
-    Input,
-    InputGroup,
-    InputGroupAddon, InputGroupButtonDropdown,
+    Col, FormGroup,
+    Input, Label,
     Row,
     Table
 } from "reactstrap";
@@ -57,7 +55,44 @@ const ManageUsers = (props) => {
             <Col xs="12" sm="12">
                 <div className={'content'}>
                     <div className={'basket-card'}>
-                        <h2>Управление пользователями:</h2>
+                        <h2>Управление пользователями</h2>
+
+                        <h4>Добавить нового пользователя:</h4>
+                        <FormGroup row>
+                            <Label for="userName" sm={3}>Имя пользователя</Label>
+                            <Col sm={9}>
+                                <Input id="userName" placeholder="Имя пользователя" onChange={ event =>  item.userName = event.target.value}/>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label for="password" sm={3}>Пароль</Label>
+                            <Col sm={9}>
+                                <Input id="password" placeholder="Пароль" onChange={ event =>  item.password = event.target.value}/>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label for="role" sm={3}>Роль</Label>
+                            <Col sm={9}>
+                                <Input id="role" type={"select"} onChange={event => item.userRole = event.target.value} defaultValue={item.userRole}>
+                                    <option key={'role-none'} />
+                                    {
+                                        props.roles && props.roles.map(role => {
+                                            return (
+                                                <option key={'role-' + role} value={role} selected={item.userRole === role}>{role}</option>
+
+                                            )
+                                        })
+                                    }
+                                </Input>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup check row>
+                            <Col sm={{ size: 10, offset: 2 }} className={"action-buttons"}>
+                                <Button onClick={add} color="secondary">Добавить</Button>
+                            </Col>
+                        </FormGroup>
+
+                        <h4>Список пользователей:</h4>
                         <Table>
                             <thead>
                             <tr>
@@ -83,23 +118,6 @@ const ManageUsers = (props) => {
                             }
                             </tbody>
                         </Table>
-                        <h4>Добавить нового пользователя:</h4>
-                        <InputGroup>
-                            <Input placeholder="Имя пользователя" onChange={ event =>  item.userName = event.target.value}/>
-                            <Input placeholder="Пароль" onChange={ event =>  item.password = event.target.value}/>
-                            <Input type={"select"} onChange={event => item.userRole = event.target.value} defaultValue={item.userRole}>
-                                <option key={'role-none'} />
-                                {
-                                    props.roles && props.roles.map(role => {
-                                        return (
-                                            <option key={'role-' + role} value={role} selected={item.userRole === role}>{role}</option>
-
-                                        )
-                                    })
-                                }
-                            </Input>
-                            <InputGroupAddon addonType="append" className={"action-buttons"}><Button onClick={add} color="secondary">Добавить</Button></InputGroupAddon>
-                        </InputGroup>
                         {
                             editing ? <ManageUser user={editingUser} toggle={toggleEditing} /> : null
                         }

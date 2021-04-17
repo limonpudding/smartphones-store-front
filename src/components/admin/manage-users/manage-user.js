@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {
-    Button,
-    Input, InputGroup,
-    InputGroupAddon
+    Button, Col, FormGroup,
+    Input, Label
 } from "reactstrap";
 import {selectRoles} from "../../../redux/selectors/all";
 import {connect} from "react-redux";
@@ -38,27 +37,41 @@ const ManageUser = (props) => {
     return (
         <div className="ts-modal">
             <div className="ts-modal-content">
-                <h4>Редактирование пользователя:</h4>
-                <InputGroup>
-                    <Input type={"text"} placeholder="Имя пользователя" onChange={event => item.userName = event.target.value} defaultValue={item.userName}/>
-                    <Input type={"text"} placeholder="Пароль" onChange={event => item.password = event.target.value} defaultValue={item.password}/>
-                    <Input type={"select"} placeholder="Роль" onChange={event => item.userRole = event.target.value} defaultValue={item.userRole}>
-                        {
-                            props.roles && props.roles.map(role => {
-                                return (
-                                    <option key={'role-' + role} value={role} selected={item.userRole === role}>{role}</option>
 
-                                )
-                            })
-                        }
-                    </Input>
-                    <InputGroupAddon addonType="append" className={"action-buttons"}>
+                <h4>Редактирование пользователя:</h4>
+                <FormGroup row>
+                    <Label for="userName" sm={3}>Имя пользователя</Label>
+                    <Col sm={9}>
+                        <Input id="userName" type={"text"} placeholder="Имя пользователя" onChange={event => item.userName = event.target.value} defaultValue={item.userName}/>
+                    </Col>
+                </FormGroup>
+                <FormGroup row>
+                    <Label for="password" sm={3}>Пароль</Label>
+                    <Col sm={9}>
+                        <Input id="password" type={"text"} placeholder="Пароль" onChange={event => item.password = event.target.value} defaultValue={item.password}/>
+                    </Col>
+                </FormGroup>
+                <FormGroup row>
+                    <Label for="role" sm={3}>Роль</Label>
+                    <Col sm={9}>
+                        <Input id="role" type={"select"} placeholder="Роль" onChange={event => item.userRole = event.target.value} defaultValue={item.userRole}>
+                            {
+                                props.roles && props.roles.map(role => {
+                                    return (
+                                        <option key={'role-' + role} value={role} selected={item.userRole === role}>{role}</option>
+
+                                    )
+                                })
+                            }
+                        </Input>
+                    </Col>
+                </FormGroup>
+                <FormGroup check row>
+                    <Col sm={{ size: 10, offset: 2 }} className={"action-buttons"}>
                         <Button color="secondary" onClick={save}>Сохранить</Button>
-                    </InputGroupAddon>
-                    <InputGroupAddon addonType="append" className={"action-buttons"}>
                         <Button color="secondary" onClick={handleClick}>Отменить</Button>
-                    </InputGroupAddon>
-                </InputGroup>
+                    </Col>
+                </FormGroup>
             </div>
         </div>
     );

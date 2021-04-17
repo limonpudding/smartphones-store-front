@@ -7,6 +7,8 @@ import {Redirect} from "react-router";
 
 const Login = (props) => {
 
+    // TODO добавить сообщения об ошибке, при неудачной попытке авторизации
+
     const [user] = useState({
         userName: '',
         password: ''

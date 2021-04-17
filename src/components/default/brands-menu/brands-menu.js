@@ -4,7 +4,7 @@ import {
     NavItem,
     Col
 } from "reactstrap";
-import {NavLink as kek} from "reactstrap";
+import {NavLink as BrandItem} from "reactstrap";
 import {connect} from "react-redux";
 import {selectBrands} from "../../../redux/selectors/all";
 import {GetBrands} from "../../../redux/actions/brands";
@@ -18,18 +18,25 @@ const BrandsMenu = (props) => {
 
     return (
         <Col>
-            <div  className={'right-card'}>
-            <p>Бренд</p>
+            <div className={'right-card'}>
+            <h5>Бренд</h5>
             <Nav vertical>
                 {
                     props.brands && props.brands.map(brand => {
                         return (
-                            <NavItem>
-                                <kek> <NavLink to={`/catalog/${brand.id}`}>{brand.name}</NavLink></kek>
+                            <NavItem key={"brands-"+brand.name}>
+                                <BrandItem>
+                                    <NavLink to={`/catalog/${brand.id}`}>{brand.name}</NavLink>
+                                </BrandItem>
                             </NavItem>
                         )
                     })
                 }
+                <NavItem key={"brands-all"}>
+                    <BrandItem>
+                        <NavLink to={`/catalog`}>Сбросить фильтр</NavLink>
+                    </BrandItem>
+                </NavItem>
             </Nav>
             </div>
         </Col>

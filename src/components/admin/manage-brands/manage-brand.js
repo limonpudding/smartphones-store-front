@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {
-    Button,
-    Input, InputGroup,
-    InputGroupAddon
+    Button, Col, FormGroup,
+    Input, Label
 } from "reactstrap";
 import {connect} from "react-redux";
 import {UpdateBrand} from "../../../redux/actions/brands";
@@ -35,16 +34,20 @@ const ManageBrand = (props) => {
     return (
         <div className="ts-modal">
             <div className="ts-modal-content">
+
                 <h4>Редактирование бренда:</h4>
-                <InputGroup>
-                    <Input placeholder="Наименование" onChange={ event =>  item.name = event.target.value} defaultValue={item.name}/>
-                    <InputGroupAddon addonType="append" className={"action-buttons"}>
+                <FormGroup row>
+                    <Label for="name" sm={3}>Наименование</Label>
+                    <Col sm={9}>
+                        <Input id="name" placeholder="Наименование" onChange={ event =>  item.name = event.target.value} defaultValue={item.name}/>
+                    </Col>
+                </FormGroup>
+                <FormGroup check row>
+                    <Col sm={{ size: 10, offset: 2 }} className={"action-buttons"}>
                         <Button color="secondary" onClick={save}>Сохранить</Button>
-                    </InputGroupAddon>
-                    <InputGroupAddon addonType="append" className={"action-buttons"}>
                         <Button color="secondary" onClick={handleClick}>Отменить</Button>
-                    </InputGroupAddon>
-                </InputGroup>
+                    </Col>
+                </FormGroup>
             </div>
         </div>
     );

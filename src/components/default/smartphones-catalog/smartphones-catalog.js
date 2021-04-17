@@ -11,6 +11,8 @@ import {useParams} from "react-router";
 
 const SmartphonesCatalog = (props) => {
 
+    // TODO добавить сообщения об ошибке, когда пытаешься добавить несколько одинаковых смартфонов в корзину
+
     useEffect(() => {
         props.getSmartphones();
     }, []);

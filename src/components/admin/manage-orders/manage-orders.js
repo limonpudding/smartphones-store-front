@@ -24,7 +24,7 @@ const ManageOrders = (props) => {
             <Col xs="12" sm="12">
                 <div className={'content'}>
                     <div className={'basket-card'}>
-                        <h2>Управление заказами:</h2>
+                        <h2>Управление заказами</h2>
                         <Table>
                             <thead>
                             <tr>

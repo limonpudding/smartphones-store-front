@@ -4,6 +4,7 @@ import {authHeader} from "../../components/login/auth-header";
 export default function brandsMiddleware() {
     return store => next => action => {
         switch (action.type) {
+            // TODO пееределать методы так, чтобы не тянуть каждый раз все данные из БД
             case GetBrandsAction:
                 fetch("/brands", {
                     headers: authHeader(),

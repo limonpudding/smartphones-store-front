@@ -1,12 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import {Button, Col, Row, Table} from "reactstrap";
 import {connect} from "react-redux";
 import {SetBasket} from "../../../redux/actions/basket";
 import {selectBasket, selectUserDetail} from "../../../redux/selectors/all";
 import {Redirect} from "react-router";
 import {AddOrder} from "../../../redux/actions/orders";
+import MessageBox from "../../util/message-box";
 
 const Basket = (props) => {
+
+    // TODO очистить корзину после создания заказа
+
+    const [showErrorDialog, setShowErrorDialog] = useState(false);
+    const toggleErrorDialog = () => setShowErrorDialog(!showErrorDialog);
+    const [errorDialogData, setErrorDialogData] = useState({
+        title: '',
+        message: '',
+    });
+
+    const [orderCompleted, setOrderCompleted] = useState(false);
 
     const removeFromBasket = (id) => {
         let actualBasket = props.basket.filter(smartphone => smartphone.id !== id);
@@ -15,15 +27,31 @@ const Basket = (props) => {
 
 
     const createOrder = () => {
+        if (!props.userDetail) {
+            setErrorDialogData({
+                title: 'Ошибка',
+                message: 'Упс, кажется, вы не авторизованы!',
+            })
+            toggleErrorDialog();
+        }
+        if (props.basket.length === 0) {
+            setErrorDialogData({
+                title: 'Ошибка',
+                message: 'Корзина пуста! Чтобы оформить заказ, необходимо добавить в корзину хотя бы 1 товар.',
+            })
+            toggleErrorDialog();
+        }
         let order = {
             smartphones: props.basket,
             userName: props.userDetail.userName
-        }
+        };
         props.addOrder(order);
-        return <Redirect to={"/orders"}/>
+        props.setBasket([]);
+        setOrderCompleted(true);
     }
 
     return (
+        orderCompleted ? <Redirect to={"/orders"}/> :
         <Row>
             <Col xs="12" sm="12">
                 <div className={'content'}>
@@ -60,6 +88,9 @@ const Basket = (props) => {
                         </div>
                     </div>
                 </div>
+                {
+                    showErrorDialog ? <MessageBox errorDialogData={errorDialogData} toggle={toggleErrorDialog} /> : null
+                }
             </Col>
         </Row>
     );

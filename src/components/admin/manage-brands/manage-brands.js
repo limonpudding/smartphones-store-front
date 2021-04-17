@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {
     Button,
-    Col,
-    Input,
-    InputGroup,
-    InputGroupAddon,
+    Col, FormGroup,
+    Input, Label,
     Row,
     Table
 } from "reactstrap";
@@ -45,7 +43,22 @@ const ManageBrands = (props) => {
             <Col xs="12" sm="12">
                 <div className={'content'}>
                     <div className={'basket-card'}>
-                        <h2>Управление брендами:</h2>
+                        <h2>Управление брендами</h2>
+
+                        <h4>Добавить новый бренд:</h4>
+                        <FormGroup row>
+                            <Label for="name" sm={3}>Наименование</Label>
+                            <Col sm={9}>
+                                <Input id="name" placeholder="Наименование" onChange={ event =>  item.name = event.target.value}/>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup check row>
+                            <Col sm={{ size: 10, offset: 2 }} className={"action-buttons"}>
+                                <Button onClick={add} color="secondary">Добавить</Button>
+                            </Col>
+                        </FormGroup>
+
+                        <h4>Список брендов:</h4>
                         <Table>
                             <thead>
                             <tr>
@@ -68,11 +81,6 @@ const ManageBrands = (props) => {
                             }
                             </tbody>
                         </Table>
-                        <h4>Добавить новый бренд:</h4>
-                        <InputGroup>
-                            <Input placeholder="Наименование" onChange={ event =>  item.name = event.target.value}/>
-                            <InputGroupAddon addonType="append" className={"action-buttons"}><Button onClick={add} color="secondary">Добавить</Button></InputGroupAddon>
-                        </InputGroup>
                         {
                             editing ? <ManageBrand brand={editingBrand} toggle={toggleEditing} /> : null
                         }

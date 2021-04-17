@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {
     Button,
-    Col,
-    Input,
-    InputGroup,
-    InputGroupAddon,
+    Col, FormGroup,
+    Input, Label,
     Row,
     Table
 } from "reactstrap";
@@ -60,7 +58,67 @@ const ManageCatalog = (props) => {
             <Col xs="12" sm="12">
                 <div className={'content'}>
                     <div className={'basket-card'}>
-                        <h2>Управление каталогом:</h2>
+                        <h2>Управление каталогом</h2>
+
+                        <h4>Добавить смартфон в каталог:</h4>
+                        <FormGroup row>
+                            <Label for="model" sm={3}>Модель</Label>
+                            <Col sm={9}>
+                                <Input id="model" placeholder="Модель" onChange={ event =>  item.modelName = event.target.value}/>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label for="brand" sm={3}>Бренд</Label>
+                            <Col sm={9}>
+                                <Input id="brand" type={"select"} onChange={event => item.brand = JSON.parse(event.target.value)}>
+                                    <option key={'brand-none'} />
+                                    {
+                                        props.brands && props.brands.map(brand => {
+                                            return (
+                                                <option key={'brand-' + brand.id} value={JSON.stringify(brand)}>{brand.name}</option>
+                                            )
+                                        })
+                                    }
+                                </Input>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label for="cpu" sm={3}>Процессор</Label>
+                            <Col sm={9}>
+                                <Input id="cpu" placeholder="Процессор" onChange={ event =>  item.cpu = event.target.value}/>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label for="gpu" sm={3}>Графический процессор</Label>
+                            <Col sm={9}>
+                                <Input id="gpu" placeholder="Графический процессор" onChange={ event =>  item.gpu = event.target.value}/>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label for="ram" sm={3}>Объём ОЗУ</Label>
+                            <Col sm={9}>
+                                <Input id="ram" placeholder="Объём ОЗУ" onChange={ event =>  item.ram = event.target.value}/>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label for="rom" sm={3}>Объём ПЗУ</Label>
+                            <Col sm={9}>
+                                <Input id="rom" placeholder="Объём ПЗУ" onChange={ event =>  item.rom = event.target.value}/>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label for="price" sm={3}>Цена</Label>
+                            <Col sm={9}>
+                                <Input id="price" placeholder="Цена" onChange={ event =>  item.price = event.target.value}/>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup check row>
+                            <Col sm={{ size: 10, offset: 2 }} className={"action-buttons"}>
+                                <Button onClick={add} color="secondary">Добавить</Button>
+                            </Col>
+                        </FormGroup>
+
+                        <h4>Список товаров:</h4>
                         <Table>
                             <thead>
                             <tr>
@@ -96,28 +154,6 @@ const ManageCatalog = (props) => {
                             }
                             </tbody>
                         </Table>
-                        <h4>Добавить смартфон в каталог:</h4>
-                        <InputGroup>
-                            <Input placeholder="Модель" onChange={ event =>  item.modelName = event.target.value}/>
-                            <Input type={"select"} onChange={event => item.brand = JSON.parse(event.target.value)}>
-                                <option key={'brand-none'} />
-                                {
-                                    props.brands && props.brands.map(brand => {
-                                        return (
-                                            <option key={'brand-' + brand.id} value={JSON.stringify(brand)}>{brand.name}</option>
-                                        )
-                                    })
-                                }
-                            </Input>
-                            <Input placeholder="Процессор" onChange={ event =>  item.cpu = event.target.value}/>
-                            <Input placeholder="Графический процессор" onChange={ event =>  item.gpu = event.target.value}/>
-                            <Input placeholder="Объём ОЗУ" onChange={ event =>  item.ram = event.target.value}/>
-                            <Input placeholder="Объём ПЗУ" onChange={ event =>  item.rom = event.target.value}/>
-                            <Input placeholder="Цена" onChange={ event =>  item.price = event.target.value}/>
-                            <InputGroupAddon addonType="append" className={"action-buttons"}>
-                                <Button onClick={add} color="secondary">Добавить</Button>
-                            </InputGroupAddon>
-                        </InputGroup>
                         {
                             editing ? <ManageProduct smartphone={editingProduct} toggle={toggleEditing} /> : null
                         }

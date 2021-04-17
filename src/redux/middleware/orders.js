@@ -7,10 +7,12 @@ import {
     UpdateOrderAction
 } from "../actions/orders";
 import {authHeader} from "../../components/login/auth-header";
+import {SetBasket} from "../actions/basket";
 
 export default function ordersMiddleware() {
     return store => next => action => {
         switch (action.type) {
+            // TODO пееределать методы так, чтобы не тянуть каждый раз все данные из БД
             case GetOrdersAction:
                 fetch("/purchaseOrders", {
                     headers: authHeader(),

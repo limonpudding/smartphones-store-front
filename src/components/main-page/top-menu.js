@@ -73,9 +73,6 @@ const TopMenu = (props) => {
                         {
                             props.role && props.role === 'ADMIN'
                             &&
-                            // <NavItem>
-                            //     <NavLink to="/manage-users">Управление пользователями</NavLink>
-                            // </NavItem>
                             <NavItem>
                                 <NavLink to="/manage-catalog">Управление каталогом</NavLink>
                             </NavItem>

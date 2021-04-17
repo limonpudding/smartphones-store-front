@@ -199,7 +199,7 @@
 
 .action-buttons button {
   background: #ffc430;
-
+  margin-left: 10px;
   padding: 6px 16px;
   color: #151515;
   transition: 0.4s;
@@ -227,17 +227,43 @@
 }
 
 .ts-modal-content {
-  width: 800px;
+  width: 1000px;
   background-color: white;
   position: absolute;
   top: 30%;
-  left: calc(50% - 400px);
+  left: calc(50% - 500px);
   padding: 20px;
   box-shadow: 0px 2px 15px rgba(0,0,0,0.3);
   border-radius: 5px;
   margin: 0 auto;
 }
 /* Для модальных окон END */
+
+/* Для сообщений об ошибках */
+.ts-modal-error {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.ts-modal-error-content {
+  width: 400px;
+  background-color: white;
+  position: absolute;
+  top: 30%;
+  left: calc(50% - 200px);
+  padding: 20px;
+  box-shadow: 0px 2px 15px rgba(0,0,0,0.3);
+  border-radius: 5px;
+  margin: 0 auto;
+}
+/* Для сообщений об ошибках END */
 
 @keyframes App-logo-spin {
   from {

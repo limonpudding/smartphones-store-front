@@ -30,7 +30,7 @@ const Orders = (props) => {
                                 props.orders && props.orders.map(order => {
                                     return (
                                         <tr key={`order-${order.id}`}>
-                                            <th scope="row">1</th>
+                                            <th scope="row">{order.id}</th>
                                             <td>{order.number}</td>
                                             <td>{order.fullPrice}</td>
                                             <td>{order.status}</td>
