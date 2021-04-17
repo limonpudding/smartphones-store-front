@@ -16,9 +16,17 @@ const Login = (props) => {
         props.login(user);
     }
 
+    if (props.userDetail.role && props.userDetail.role === 'USER') {
+        return <Redirect to={"/catalog"}/>
+    }
+
+    if (props.userDetail.role && props.userDetail.role === 'ADMIN') {
+        return <Redirect to={"/manage-catalog"}/>
+    }
+
+
     return (
 
-        props.userDetail.role && props.userDetail.role !== 'GUEST' ? <Redirect to={'/catalog'}/> :
             <div className={'content text-center auth-form ts-form-group-dark'}>
                 <Form>
                     <h5>ЛОГИН</h5>
