@@ -4,7 +4,7 @@ export default function authMiddleware() {
     return store => next => action => {
         switch (action.type) {
             case DoLoginAction:
-                fetch("/login", {
+                fetch("http://localhost:8080/login", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export default function authMiddleware() {
                 )
                 break;
             case DoRegisterAction:
-                fetch("/register", {
+                fetch("http://localhost:8080/register", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

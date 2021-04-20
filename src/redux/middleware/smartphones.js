@@ -13,7 +13,7 @@ export default function smartphonesMiddleware() {
         switch (action.type) {
             case GetSmartphonesAction:
                 // Метод без параметров
-                fetch("/smartphones", {
+                fetch("http://localhost:8080/smartphones", {
                     headers: authHeader(),
                 }).then(
                     response => response.json()
@@ -23,7 +23,7 @@ export default function smartphonesMiddleware() {
                 break;
             case AddSmartphoneAction:
                 // В этот метод поступает полный объект smartphone со всеми полями
-                fetch("/smartphones", {
+                fetch("http://localhost:8080/smartphones", {
                     method: 'POST',
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)
@@ -37,7 +37,7 @@ export default function smartphonesMiddleware() {
                 break;
             case EditSmartphoneAction:
                 // В этот метод поступает полный объект smartphone со всеми полями
-                fetch("/smartphones/" + action.payload.id, {
+                fetch("http://localhost:8080/smartphones/" + action.payload.id, {
                     method: 'PUT',
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)
@@ -51,7 +51,7 @@ export default function smartphonesMiddleware() {
                 break;
             case RemoveSmartphoneAction:
                 // В этот метод поступает только id
-                fetch("/smartphones/" + action.payload, {
+                fetch("http://localhost:8080/smartphones/" + action.payload, {
                     method: 'DELETE',
                     headers: authHeader()
                 }).then(() => {

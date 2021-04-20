@@ -19,32 +19,28 @@ const Login = (props) => {
     }
 
     if (props.userDetail.role && props.userDetail.role === 'USER') {
-        return <Redirect to={"/catalog"}/>
+        return <Redirect to={"/catalog"}/>;
     }
 
     if (props.userDetail.role && props.userDetail.role === 'ADMIN') {
-        return <Redirect to={"/manage-catalog"}/>
+        return <Redirect to={"/manage-catalog"}/>;
     }
 
-
     return (
-
-            <div className={'content text-center auth-form ts-form-group-dark'}>
-                <Form>
-                    <h5>ЛОГИН</h5>
-                    <FormGroup>
-                        <Input onChange={event => user.userName = event.target.value} type="login" name="login"
-                               id="login" placeholder="Логин"/>
-                    </FormGroup>
-                    <FormGroup>
-                        <Input onChange={event => user.password = event.target.value} type="password" name="password"
-                               id="password" placeholder="Пароль"/>
-                    </FormGroup>
-                    <Button onClick={tryLogin}>Вход</Button>
-                </Form>
-            </div>
-
-
+        <div className={'content text-center auth-form ts-form-group-dark'}>
+            <Form>
+                <h5>ЛОГИН</h5>
+                <FormGroup>
+                    <Input onChange={event => user.userName = event.target.value} type="login" name="login"
+                           id="login" placeholder="Логин"/>
+                </FormGroup>
+                <FormGroup>
+                    <Input onChange={event => user.password = event.target.value} type="password" name="password"
+                           id="password" placeholder="Пароль"/>
+                </FormGroup>
+                <Button onClick={tryLogin}>Вход</Button>
+            </Form>
+        </div>
     );
 }
 

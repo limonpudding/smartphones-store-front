@@ -8,13 +8,15 @@ import {
 } from "../actions/orders";
 import {authHeader} from "../../components/login/auth-header";
 import {SetBasket} from "../actions/basket";
+import {selectBrands} from "../selectors/all";
+import {SetBrands} from "../actions/brands";
 
 export default function ordersMiddleware() {
     return store => next => action => {
         switch (action.type) {
             // TODO пееределать методы так, чтобы не тянуть каждый раз все данные из БД
             case GetOrdersAction:
-                fetch("/purchaseOrders", {
+                fetch("http://localhost:8080/purchaseOrders", {
                     headers: authHeader(),
                 }).then(
                     response => response.json()
@@ -23,7 +25,7 @@ export default function ordersMiddleware() {
                 )
                 break;
             case GetOrdersByUserAction:
-                fetch("/purchaseOrders/user/" + store.getState().userDetail.userDetail.userName, {
+                fetch("http://localhost:8080/purchaseOrders/user/" + store.getState().userDetail.userDetail.userName, {
                     headers: authHeader(),
                 }).then(
                     response => response.json()
@@ -32,7 +34,7 @@ export default function ordersMiddleware() {
                 )
                 break;
             case AddOrderAction:
-                fetch("/purchaseOrders", {
+                fetch("http://localhost:8080/purchaseOrders", {
                     method: 'POST',
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)
@@ -41,12 +43,16 @@ export default function ordersMiddleware() {
                 )
                 break;
             case UpdateOrderAction:
-                fetch("/purchaseOrders/submit/"+action.payload.id, {
+                fetch("http://localhost:8080/purchaseOrders/submit/"+action.payload.id, {
                     method: 'PUT',
                     headers: authHeader()
                 }).then(
-                    store.dispatch(new GetOrders())
-                )
+                    response => response.json()
+                ).then(response => {
+                    let orders = selectBrands(store.getState()).slice();
+                    let newOrders = orders.map(order => order.id === response.id ? response : order);
+                    store.dispatch(new SetOrders(newOrders));
+                });
                 break;
         }
 

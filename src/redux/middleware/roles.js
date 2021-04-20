@@ -5,7 +5,7 @@ export default function rolesMiddleware() {
     return store => next => action => {
         switch (action.type) {
             case GetRolesAction:
-                fetch("/roles", {
+                fetch("http://localhost:8080/roles", {
                     headers: authHeader(),
                 }).then(
                     response => response.json()

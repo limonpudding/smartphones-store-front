@@ -1,11 +1,13 @@
 import {AddUserAction, GetUsers, GetUsersAction, RemoveUserAction, SetUsers, UpdateUserAction} from "../actions/users";
 import {authHeader} from "../../components/login/auth-header";
+import {selectSmartphones, selectUsers} from "../selectors/all";
+import {SetSmartphones} from "../actions/smartphones";
 
 export default function usersMiddleware() {
     return store => next => action => {
         switch (action.type) {
             case GetUsersAction:
-                fetch("/users", {
+                fetch("http://localhost:8080/users", {
                     headers: authHeader(),
                 }).then(
                     response => response.json()
@@ -14,30 +16,39 @@ export default function usersMiddleware() {
                 )
                 break;
             case AddUserAction:
-                fetch("/users", {
+                fetch("http://localhost:8080/users", {
                     method: 'POST',
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)
                 }).then(
-                    store.dispatch(new GetUsers())
-                )
+                    response => response.json()
+                ).then(response => {
+                    let users = selectUsers(store.getState()).slice();
+                    users.push(response);
+                    store.dispatch(new SetUsers(users));
+                });
                 break;
             case UpdateUserAction:
-                fetch("/users/" + action.payload.id, {
+                fetch("http://localhost:8080/users/" + action.payload.id, {
                     method: 'PUT',
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)
                 }).then(
-                    store.dispatch(new GetUsers())
-                )
+                    response => response.json()
+                ).then(response => {
+                    let users = selectUsers(store.getState()).slice();
+                    let newUsers = users.map(user => user.id === response.id ? response : user);
+                    store.dispatch(new SetUsers(newUsers));
+                });
                 break;
             case RemoveUserAction:
-                fetch("/users/" + action.payload, {
+                fetch("http://localhost:8080/users/" + action.payload, {
                     method: 'DELETE',
                     headers: authHeader()
-                }).then(
-                    store.dispatch(new GetUsers())
-                )
+                }).then(() => {
+                    let users = selectUsers(store.getState()).filter(user => user.id !== action.payload);
+                    store.dispatch(new SetUsers(users));
+                });
                 break;
         }
 
