@@ -7,14 +7,11 @@ import {
     UpdateOrderAction
 } from "../actions/orders";
 import {authHeader} from "../../components/login/auth-header";
-import {SetBasket} from "../actions/basket";
-import {selectBrands} from "../selectors/all";
-import {SetBrands} from "../actions/brands";
+import {selectOrders} from "../selectors/all";
 
 export default function ordersMiddleware() {
     return store => next => action => {
         switch (action.type) {
-            // TODO пееределать методы так, чтобы не тянуть каждый раз все данные из БД
             case GetOrdersAction:
                 fetch("http://localhost:8080/purchaseOrders", {
                     headers: authHeader(),
@@ -49,7 +46,7 @@ export default function ordersMiddleware() {
                 }).then(
                     response => response.json()
                 ).then(response => {
-                    let orders = selectBrands(store.getState()).slice();
+                    let orders = selectOrders(store.getState()).slice();
                     let newOrders = orders.map(order => order.id === response.id ? response : order);
                     store.dispatch(new SetOrders(newOrders));
                 });

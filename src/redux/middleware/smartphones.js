@@ -1,7 +1,6 @@
 import {
     AddSmartphoneAction,
     EditSmartphoneAction,
-    GetSmartphones,
     GetSmartphonesAction, RemoveSmartphoneAction,
     SetSmartphones
 } from "../actions/smartphones";

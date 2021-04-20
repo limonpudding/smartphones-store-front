@@ -9,8 +9,6 @@ import MessageBox from "../../util/message-box";
 
 const Basket = (props) => {
 
-    // TODO очистить корзину после создания заказа
-
     const [showErrorDialog, setShowErrorDialog] = useState(false);
     const toggleErrorDialog = () => setShowErrorDialog(!showErrorDialog);
     const [errorDialogData, setErrorDialogData] = useState({

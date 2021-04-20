@@ -1,7 +1,6 @@
-import {AddUserAction, GetUsers, GetUsersAction, RemoveUserAction, SetUsers, UpdateUserAction} from "../actions/users";
+import {AddUserAction, GetUsersAction, RemoveUserAction, SetUsers, UpdateUserAction} from "../actions/users";
 import {authHeader} from "../../components/login/auth-header";
-import {selectSmartphones, selectUsers} from "../selectors/all";
-import {SetSmartphones} from "../actions/smartphones";
+import {selectUsers} from "../selectors/all";
 
 export default function usersMiddleware() {
     return store => next => action => {

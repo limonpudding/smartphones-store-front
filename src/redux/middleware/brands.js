@@ -1,12 +1,10 @@
-import {AddBrandAction, GetBrands, GetBrandsAction, SetBrands, UpdateBrandAction} from "../actions/brands";
+import {AddBrandAction, GetBrandsAction, SetBrands, UpdateBrandAction} from "../actions/brands";
 import {authHeader} from "../../components/login/auth-header";
-import {selectBrands, selectSmartphones} from "../selectors/all";
-import {SetSmartphones} from "../actions/smartphones";
+import {selectBrands} from "../selectors/all";
 
 export default function brandsMiddleware() {
     return store => next => action => {
         switch (action.type) {
-            // TODO пееределать методы так, чтобы не тянуть каждый раз все данные из БД
             case GetBrandsAction:
                 fetch("http://localhost:8080/brands", {
                     headers: authHeader(),
