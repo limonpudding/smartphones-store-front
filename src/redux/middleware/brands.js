@@ -7,7 +7,10 @@ export default function brandsMiddleware() {
         switch (action.type) {
             case GetBrandsAction:
                 fetch("http://localhost:8080/brands", {
-                    headers: authHeader(),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
                 }).then(
                     response => response.json()
                 ).then(

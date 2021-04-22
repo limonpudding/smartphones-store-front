@@ -50,7 +50,7 @@ const TopMenu = (props) => {
                             </NavItem>
                         }
                         {
-                            props.role && props.role === 'USER'
+                            props.role && (props.role === 'USER' || props.role === 'GUEST')
                             &&
                             <NavItem>
                                 <NavLink to="/catalog">Каталог</NavLink>

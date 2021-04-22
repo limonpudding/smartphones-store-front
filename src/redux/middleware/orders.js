@@ -1,7 +1,6 @@
 import {
     AddOrderAction,
-    GetOrders,
-    GetOrdersAction,
+    GetOrdersAction, GetOrdersByUser,
     GetOrdersByUserAction,
     SetOrders,
     UpdateOrderAction
@@ -36,7 +35,7 @@ export default function ordersMiddleware() {
                     headers: authHeader(),
                     body: JSON.stringify(action.payload)
                 }).then(
-                    store.dispatch(new GetOrders())
+                    store.dispatch(new GetOrdersByUser())
                 )
                 break;
             case UpdateOrderAction:

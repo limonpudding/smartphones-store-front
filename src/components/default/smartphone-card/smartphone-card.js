@@ -2,7 +2,7 @@ import React from "react";
 import {Alert, Button, Col} from "reactstrap";
 import {connect} from "react-redux";
 import {SetBasket} from "../../../redux/actions/basket";
-import {selectBasket} from "../../../redux/selectors/all";
+import {selectBasket, selectUserDetail} from "../../../redux/selectors/all";
 
 const SmartphoneCard = (props) => {
 
@@ -24,9 +24,8 @@ const SmartphoneCard = (props) => {
                 <p>Объём ПЗУ: {props.smartphone.rom}Гб</p>
 
                 <Alert color="success">Цена: {props.smartphone.price}</Alert>
-                {/*<Alert color="warning" className={"add-to-basket"} onClick={addToBasket}>Добавить в корзину</Alert>*/}
                 <div className={"action-buttons"}>
-                    <Button onClick={addToBasket} type={"submit"}>Добавить в корзину</Button>
+                    <Button onClick={addToBasket} type={"submit"} hidden={props.role && props.role === 'GUEST'}>Добавить в корзину</Button>
                 </div>
             </div>
         </Col>
@@ -34,7 +33,8 @@ const SmartphoneCard = (props) => {
 }
 
 const mapStateToProps = state => ({
-    basket: selectBasket(state)
+    basket: selectBasket(state),
+    role: selectUserDetail(state).role
 })
 
 const mapDispatchToProps = dispatch => {

@@ -51,6 +51,9 @@ const MainPage = () => {
                         <Route path="/manage-users">
                             <ManageUsers/>
                         </Route>
+                        <Route path="/">
+                            <SmartphonesCatalog/>
+                        </Route>
                     </Switch>
                 </div>
             </Router>
