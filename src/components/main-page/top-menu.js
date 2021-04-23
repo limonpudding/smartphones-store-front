@@ -20,9 +20,10 @@ const TopMenu = (props) => {
 
     const logout = () => {
         props.setUserDetail({
+            id: '',
             userName: '',
-            basic: '',
-            role: 'GUEST'
+            roles: ['GUEST'],
+            token: ''
         });
         sessionStorage.removeItem('userDetail');
     }
@@ -36,70 +37,66 @@ const TopMenu = (props) => {
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                         {
-                            (!props.role || props.role === 'GUEST')
+                            (!props.roles || props.roles.indexOf('GUEST') !== -1)
                             &&
                             <NavItem>
                                 <NavLink to="/login">Вход</NavLink>
                             </NavItem>
                         }
                         {
-                            (!props.role || props.role === 'GUEST')
+                            (!props.roles || props.roles.indexOf('GUEST') !== -1)
                             &&
                             <NavItem>
                                 <NavLink to="/register">Регистрация</NavLink>
                             </NavItem>
                         }
+                        <NavItem>
+                            <NavLink to="/catalog">Каталог</NavLink>
+                        </NavItem>
                         {
-                            props.role && (props.role === 'USER' || props.role === 'GUEST')
-                            &&
-                            <NavItem>
-                                <NavLink to="/catalog">Каталог</NavLink>
-                            </NavItem>
-                        }
-                        {
-                            props.role && props.role === 'USER'
+                            props.roles && props.roles.indexOf('USER') !== -1
                             &&
                             <NavItem>
                                 <NavLink to="/basket">Корзина</NavLink>
                             </NavItem>
                         }
                         {
-                            props.role && props.role === 'USER'
+                            props.roles && props.roles.indexOf('USER') !== -1
                             &&
                             <NavItem>
                                 <NavLink to="/orders">Заказы</NavLink>
                             </NavItem>
                         }
                         {
-                            props.role && props.role === 'ADMIN'
+                            props.roles && props.roles.indexOf('ADMIN') !== -1
                             &&
                             <NavItem>
                                 <NavLink to="/manage-catalog">Управление каталогом</NavLink>
                             </NavItem>
                         }
                         {
-                            props.role && props.role === 'ADMIN'
+                            props.roles && props.roles.indexOf('ADMIN') !== -1
                             &&
                             <NavItem>
                                 <NavLink to="/manage-brands">Управление брендами</NavLink>
                             </NavItem>
                         }
                         {
-                            props.role && props.role === 'ADMIN'
+                            props.roles && props.roles.indexOf('ADMIN') !== -1
                             &&
                             <NavItem>
                                 <NavLink to="/manage-users">Управление пользователями</NavLink>
                             </NavItem>
                         }
                         {
-                            props.role && props.role === 'ADMIN'
+                            props.roles && props.roles.indexOf('ADMIN') !== -1
                             &&
                             <NavItem>
                                 <NavLink to="/manage-orders">Управление заказами</NavLink>
                             </NavItem>
                         }
                         {
-                            props.role && props.role !== 'GUEST'
+                            props.roles && props.roles.indexOf('USER') !== -1
                             &&
                             <NavItem>
                                 <NavLink to={"/login"} onClick={logout}>Выход</NavLink>
@@ -114,7 +111,7 @@ const TopMenu = (props) => {
 
 const mapStateToProps = state => ({
     userDetail: selectUserDetail(state),
-    role: selectUserDetail(state).role
+    roles: selectUserDetail(state).roles
 })
 
 const mapDispatchToProps = dispatch => {

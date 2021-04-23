@@ -25,7 +25,7 @@ const SmartphoneCard = (props) => {
 
                 <Alert color="success">Цена: {props.smartphone.price}</Alert>
                 <div className={"action-buttons"}>
-                    <Button onClick={addToBasket} type={"submit"} hidden={props.role && props.role === 'GUEST'}>Добавить в корзину</Button>
+                    <Button onClick={addToBasket} type={"submit"} hidden={!props.roles || props.roles.indexOf('GUEST') !== -1}>Добавить в корзину</Button>
                 </div>
             </div>
         </Col>
@@ -34,7 +34,7 @@ const SmartphoneCard = (props) => {
 
 const mapStateToProps = state => ({
     basket: selectBasket(state),
-    role: selectUserDetail(state).role
+    roles: selectUserDetail(state).roles
 })
 
 const mapDispatchToProps = dispatch => {

@@ -1,4 +1,4 @@
-import {DoLoginAction, DoRegisterAction, SetUserDetail} from "../actions/auth";
+import {DoLogin, DoLoginAction, DoRegisterAction, SetUserDetail} from "../actions/auth";
 
 export default function authMiddleware() {
     return store => next => action => {
@@ -15,11 +15,7 @@ export default function authMiddleware() {
                     response => response.json()
                 ).then(
                     response => {
-                        let userDetail = {
-                            userName: action.payload.userName,
-                            basic: btoa(action.payload.userName + ':' + action.payload.password),
-                            role: response
-                        };
+                        let userDetail = response;
                         sessionStorage.setItem('userDetail', JSON.stringify(userDetail));
                         store.dispatch(new SetUserDetail(userDetail));
                     }
@@ -36,14 +32,8 @@ export default function authMiddleware() {
                 }).then(
                     response => response.json()
                 ).then(
-                    response => {
-                        let userDetail = {
-                            userName: action.payload.userName,
-                            basic: btoa(action.payload.userName + ':' + action.payload.password),
-                            role: response
-                        };
-                        sessionStorage.setItem('userDetail', JSON.stringify(userDetail));
-                        store.dispatch(new SetUserDetail(userDetail));
+                    () => {
+                        store.dispatch(new DoLogin(action.payload));
                     }
                 )
                 break;

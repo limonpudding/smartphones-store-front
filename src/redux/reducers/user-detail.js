@@ -4,9 +4,10 @@ const initialState = {
 
     userDetail: sessionStorage.getItem('userDetail') ? JSON.parse(sessionStorage.getItem('userDetail')) :
         {
+            id: '',
             userName: '',
-            basic: '',
-            role: 'GUEST'
+            roles: ['GUEST'],
+            token: ''
         }
 }
 

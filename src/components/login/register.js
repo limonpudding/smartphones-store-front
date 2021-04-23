@@ -18,8 +18,11 @@ const Register = (props) => {
         props.register(user);
     }
 
+    if (props.roles && props.roles.indexOf('USER') !== -1) {
+        return <Redirect to={"/catalog"}/>;
+    }
+
     return (
-        props.userDetail.role && props.userDetail.role !== 'GUEST' ? <Redirect to={'/catalog'}/> :
         <div className={'content text-center auth-form ts-form-group-dark'}>
             <Form>
                 <h5>РЕГИСТРАЦИЯ</h5>
@@ -37,7 +40,8 @@ const Register = (props) => {
     );
 }
 const mapStateToProps = state => ({
-    userDetail: selectUserDetail(state)
+    userDetail: selectUserDetail(state),
+    roles: selectUserDetail(state).roles
 })
 
 const mapDispatchToProps = dispatch => {

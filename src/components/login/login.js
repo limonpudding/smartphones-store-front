@@ -18,11 +18,11 @@ const Login = (props) => {
         props.login(user);
     }
 
-    if (props.userDetail.role && props.userDetail.role === 'USER') {
+    if (props.roles && props.roles.indexOf('USER') !== -1) {
         return <Redirect to={"/catalog"}/>;
     }
 
-    if (props.userDetail.role && props.userDetail.role === 'ADMIN') {
+    if (props.roles && props.roles.indexOf('ADMIN') !== -1) {
         return <Redirect to={"/manage-catalog"}/>;
     }
 
@@ -45,7 +45,7 @@ const Login = (props) => {
 }
 
 const mapStateToProps = state => ({
-    userDetail: selectUserDetail(state)
+    roles: selectUserDetail(state).roles
 })
 
 const mapDispatchToProps = dispatch => {
